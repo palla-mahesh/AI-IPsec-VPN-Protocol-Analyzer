@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Executive IPsec Security Assessment Report</title>
+    <style>
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; background: #f8fafc; color: #1e293b; padding: 40px; margin: 0; }
+        .card { background: #ffffff; border-radius: 12px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1); padding: 30px; margin-bottom: 24px; border: 1px solid #e2e8f0; }
+        .header { display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #f1f5f9; padding-bottom: 20px; }
+        .title { font-size: 24px; font-weight: 800; color: #0f172a; margin: 0; }
+        .score-circle { width: 100px; height: 100px; border-radius: 50%; background: #10b981; color: white; display: flex; flex-direction: column; align-items: center; justify-content: center; font-weight: bold; }
+        .score-val { font-size: 32px; line-height: 1; }
+        .score-lbl { font-size: 11px; text-transform: uppercase; letter-spacing: 0.5px; }
+        .grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin: 20px 0; }
+        .metric-box { background: #f1f5f9; border-radius: 8px; padding: 16px; }
+        .metric-label { font-size: 12px; text-transform: uppercase; color: #64748b; font-weight: bold; }
+        .metric-value { font-size: 18px; font-weight: 700; color: #0f172a; margin-top: 4px; }
+        table { width: 100%; border-collapse: collapse; margin-top: 15px; font-size: 14px; }
+        th { background: #f8fafc; padding: 10px; text-align: left; font-weight: 600; color: #475569; border-bottom: 2px solid #e2e8f0; }
+        .badge { display: inline-block; padding: 4px 10px; border-radius: 20px; font-size: 12px; font-weight: bold; }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <div class="header">
+            <div>
+                <h1 class="title">Executive Security Assessment: IPsec VPN</h1>
+                <p style="color: #64748b; margin: 6px 0 0 0;">National Technical Research Organisation (NTRO) • Automated Protocol Auditor</p>
+                <p style="color: #94a3b8; font-size: 12px; margin: 4px 0 0 0;">Report Generated: 2026-09-25 17:11:38 UTC</p>
+            </div>
+            <div class="score-circle">
+                <div class="score-val">100</div>
+                <div class="score-lbl">SECURE</div>
+            </div>
+        </div>
+
+        <div class="grid">
+            <div class="metric-box">
+                <div class="metric-label">Operating Mode</div>
+                <div class="metric-value">Tunnel Mode</div>
+            </div>
+            <div class="metric-box">
+                <div class="metric-label">IKE Protocol</div>
+                <div class="metric-value">IKEv2.0</div>
+            </div>
+            <div class="metric-box">
+                <div class="metric-label">AI Traffic Fingerprint</div>
+                <div class="metric-value">Email (48.3%)</div>
+            </div>
+            <div class="metric-box">
+                <div class="metric-label">Cryptographic Suite</div>
+                <div class="metric-value" style="font-size: 14px;">AES-256-GCM</div>
+            </div>
+        </div>
+
+        <h3 style="margin-top: 24px; color: #0f172a;">Regulatory & Cryptographic Compliance Status</h3>
+        <div style="display: flex; gap: 16px; margin-bottom: 20px;">
+            <div style="padding: 10px 18px; border-radius: 8px; background: #dcfce7; color: #166534; font-weight: bold;">
+                NIST SP 800-77: COMPLIANT
+            </div>
+            <div style="padding: 10px 18px; border-radius: 8px; background: #dcfce7; color: #166534; font-weight: bold;">
+                RFC 8221 (ESP): COMPLIANT
+            </div>
+            <div style="padding: 10px 18px; border-radius: 8px; background: #f1f5f9; color: #64748b; font-weight: bold;">
+                NSA CNSA Suite: OPTIONAL / NOT MET
+            </div>
+        </div>
+
+        <h3 style="margin-top: 24px; color: #0f172a;">High-Priority Threat Findings</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th style="width: 15%;">Severity</th>
+                    <th style="width: 35%;">Vulnerability Title</th>
+                    <th style="width: 10%;">CVSS</th>
+                    <th style="width: 40%;">Operational Impact</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td colspan="4" style="padding: 15px; text-align: center; color: #10b981; font-weight: bold;">No critical or high security vulnerabilities identified.</td></tr>
+            </tbody>
+        </table>
+
+        <h3 style="margin-top: 28px; color: #0f172a;">Executive Remediation Directives</h3>
+        <ul style="background: #f8fafc; border-left: 4px solid #3b82f6; padding: 16px 20px 16px 36px; border-radius: 0 8px 8px 0; color: #334155; font-size: 14px;">
+            <li style='margin-bottom: 8px;'>IPsec configuration adheres to modern military and enterprise cryptographic standards.</li>
+        </ul>
+    </div>
+</body>
+</html>

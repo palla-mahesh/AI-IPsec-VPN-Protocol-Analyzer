@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Deep Technical IPsec Security Assessment Report</title>
+    <style>
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; background: #0f172a; color: #e2e8f0; padding: 40px; margin: 0; }
+        .card { background: #1e293b; border-radius: 12px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.5); padding: 30px; margin-bottom: 24px; border: 1px solid #334155; }
+        .title { font-size: 26px; font-weight: 800; color: #f8fafc; margin: 0; }
+        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin: 20px 0; }
+        .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin: 20px 0; }
+        .stat-box { background: #0f172a; border-radius: 8px; padding: 16px; border: 1px solid #334155; }
+        .stat-label { font-size: 11px; text-transform: uppercase; color: #94a3b8; font-weight: 700; }
+        .stat-val { font-size: 20px; font-weight: 700; color: #f8fafc; margin-top: 4px; }
+        table { width: 100%; border-collapse: collapse; margin-top: 15px; font-size: 13px; }
+        th { background: #0f172a; padding: 10px; text-align: left; font-weight: 600; color: #94a3b8; border-bottom: 2px solid #334155; }
+        td { padding: 10px; border-bottom: 1px solid #334155; color: #cbd5e1; }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #334155; padding-bottom: 20px;">
+            <div>
+                <h1 class="title">Technical Protocol Audit & Cryptographic Telemetry</h1>
+                <p style="color: #94a3b8; margin: 6px 0 0 0;">Comprehensive Analysis of Captured IPsec Network Traces (NTRO)</p>
+            </div>
+            <div style="text-align: right;">
+                <div style="font-size: 32px; font-weight: 900; color: #38bdf8;">100/100</div>
+                <div style="font-size: 12px; font-weight: bold; color: #94a3b8;">RISK: SECURE</div>
+            </div>
+        </div>
+
+        <h3 style="color: #38bdf8; margin-top: 24px;">1. Security Association & Protocol Dissection</h3>
+        <div class="grid-3">
+            <div class="stat-box">
+                <div class="stat-label">IKE Version & Mode</div>
+                <div class="stat-val">IKEv2.0 (Tunnel Mode)</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-label">Active SPI Identifiers</div>
+                <div class="stat-val" style="font-size: 14px; word-break: break-all;">0xca70a12b, 0x5e48f099</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-label">Shannon Payload Entropy</div>
+                <div class="stat-val">0.0 bits/byte</div>
+            </div>
+        </div>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Negotiated Component</th>
+                    <th>Extracted Transform / Attribute</th>
+                    <th>Cryptographic Standard</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>Encryption Ciphers</td><td>AES-256-GCM</td><td>NIST SP 800-77 / RFC 8221</td></tr>
+                <tr><td>Integrity Hashes</td><td>INTEG-0</td><td>HMAC FIPS-198-1</td></tr>
+                <tr><td>Diffie-Hellman Groups</td><td>Group 19 (256-bit Random ECP)</td><td>RFC 8247</td></tr>
+                <tr><td>Perfect Forward Secrecy</td><td>ENFORCED (YES)</td><td>Child SA Key Isolation</td></tr>
+                <tr><td>Anti-Replay Window Status</td><td>0 Errors / Clean</td><td>RFC 4303 Section 3.4.3</td></tr>
+            </tbody>
+        </table>
+
+        <h3 style="color: #38bdf8; margin-top: 30px;">2. AI Encrypted Traffic Payload Fingerprinting</h3>
+        <div class="grid-2">
+            <div class="stat-box">
+                <div class="stat-label">Predicted ESP Traffic Payload</div>
+                <div class="stat-val" style="color: #38bdf8; font-size: 24px;">Email</div>
+                <p style="font-size: 13px; color: #94a3b8; margin: 8px 0 0 0;">AI Confidence Score: <strong>48.3%</strong> (RandomForestClassifier (Accuracy: 100.0%))</p>
+                <div style="margin-top: 16px;">
+                    
+            <div style="margin-bottom: 8px;">
+                <div style="display: flex; justify-content: space-between; font-size: 12px; font-weight: 600; color: #475569;">
+                    <span>VoIP</span>
+                    <span>5%</span>
+                </div>
+                <div style="background: #e2e8f0; height: 6px; border-radius: 3px; overflow: hidden; margin-top: 2px;">
+                    <div style="background: #3b82f6; width: 5%; height: 100%;"></div>
+                </div>
+            </div>
+            
+            <div style="margin-bottom: 8px;">
+                <div style="display: flex; justify-content: space-between; font-size: 12px; font-weight: 600; color: #475569;">
+                    <span>WhatsApp</span>
+                    <span>0%</span>
+                </div>
+                <div style="background: #e2e8f0; height: 6px; border-radius: 3px; overflow: hidden; margin-top: 2px;">
+                    <div style="background: #3b82f6; width: 0%; height: 100%;"></div>
+                </div>
+            </div>
+            
+            <div style="margin-bottom: 8px;">
+                <div style="display: flex; justify-content: space-between; font-size: 12px; font-weight: 600; color: #475569;">
+                    <span>Web</span>
+                    <span>27%</span>
+                </div>
+                <div style="background: #e2e8f0; height: 6px; border-radius: 3px; overflow: hidden; margin-top: 2px;">
+                    <div style="background: #3b82f6; width: 27%; height: 100%;"></div>
+                </div>
+            </div>
+            
+            <div style="margin-bottom: 8px;">
+                <div style="display: flex; justify-content: space-between; font-size: 12px; font-weight: 600; color: #475569;">
+                    <span>Email</span>
+                    <span>48%</span>
+                </div>
+                <div style="background: #e2e8f0; height: 6px; border-radius: 3px; overflow: hidden; margin-top: 2px;">
+                    <div style="background: #3b82f6; width: 48%; height: 100%;"></div>
+                </div>
+            </div>
+            
+            <div style="margin-bottom: 8px;">
+                <div style="display: flex; justify-content: space-between; font-size: 12px; font-weight: 600; color: #475569;">
+                    <span>Video</span>
+                    <span>18%</span>
+                </div>
+                <div style="background: #e2e8f0; height: 6px; border-radius: 3px; overflow: hidden; margin-top: 2px;">
+                    <div style="background: #3b82f6; width: 18%; height: 100%;"></div>
+                </div>
+            </div>
+            
+            <div style="margin-bottom: 8px;">
+                <div style="display: flex; justify-content: space-between; font-size: 12px; font-weight: 600; color: #475569;">
+                    <span>ICMP</span>
+                    <span>0%</span>
+                </div>
+                <div style="background: #e2e8f0; height: 6px; border-radius: 3px; overflow: hidden; margin-top: 2px;">
+                    <div style="background: #3b82f6; width: 0%; height: 100%;"></div>
+                </div>
+            </div>
+            
+                </div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-label">Statistical Flow Dynamics</div>
+                <table>
+                    <tr><td>Total Captured Packets</td><td>180 pkts</td></tr>
+                    <tr><td>Total Transferred Volume</td><td>140869 bytes</td></tr>
+                    <tr><td>Mean Packet Length</td><td>782.61 bytes (±383.83)</td></tr>
+                    <tr><td>Inter-Arrival Time (Mean)</td><td>66.74 ms</td></tr>
+                    <tr><td>Mean Jitter</td><td>69.62 ms</td></tr>
+                    <tr><td>Average Burst Size</td><td>2.0 pkts/burst</td></tr>
+                </table>
+            </div>
+        </div>
+
+        <h3 style="color: #38bdf8; margin-top: 30px;">3. Detailed Threat Matrix & Hardening Guidance</h3>
+        <p style='color: #10b981; font-weight: bold;'>Zero security violations detected. IPsec configuration conforms to rigorous baseline standards.</p>
+    </div>
+</body>
+</html>

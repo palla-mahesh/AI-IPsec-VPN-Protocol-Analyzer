@@ -1,0 +1,137 @@
+{
+  "cryptographic_standards": {
+    "nist_sp_800_77_rev1": {
+      "name": "NIST SP 800-77 Rev. 1: Guide to IPsec VPNs",
+      "approved_encryption": ["AES-128-GCM", "AES-256-GCM", "AES-128-CBC", "AES-256-CBC"],
+      "legacy_encryption": ["3DES"],
+      "deprecated_encryption": ["DES", "Blowfish", "RC4", "CAST", "NULL"],
+      "approved_integrity": ["HMAC-SHA256", "HMAC-SHA384", "HMAC-SHA512"],
+      "legacy_integrity": ["HMAC-SHA1"],
+      "deprecated_integrity": ["HMAC-MD5", "MD5"],
+      "approved_dh_groups": [14, 15, 16, 19, 20, 21],
+      "legacy_dh_groups": [5],
+      "deprecated_dh_groups": [1, 2],
+      "require_pfs": true,
+      "minimum_sa_lifetime_seconds": 3600,
+      "maximum_sa_lifetime_seconds": 86400
+    },
+    "cnsa_suite": {
+      "name": "Commercial National Security Algorithm (CNSA) Suite",
+      "encryption": ["AES-256-GCM"],
+      "integrity": ["HMAC-SHA384"],
+      "dh_groups": [20, 21]
+    },
+    "rfc_8221": {
+      "name": "RFC 8221 Cryptographic Algorithm Implementation Requirements for ESP/AH",
+      "must": ["AES-128-GCM", "AES-128-CBC", "AES-256-GCM", "AES-256-CBC"],
+      "should": ["ChaCha20-Poly1305"],
+      "must_not": ["DES", "3DES", "Blowfish", "NULL"]
+    }
+  },
+  "cve_database": {
+    "CVE-2016-2183": {
+      "name": "Sweet32 Birthday Attack on 64-bit Block Ciphers (3DES/Blowfish)",
+      "affected_algorithms": ["3DES", "Blowfish", "DES"],
+      "severity": "HIGH",
+      "cvss": 7.5,
+      "description": "Legacy 64-bit block ciphers are vulnerable to birthday attacks after capturing approximately 32 GB of data within a single session, enabling plaintext recovery.",
+      "remediation": "Replace 3DES/Blowfish with AES-GCM (128-bit or 256-bit)."
+    },
+    "CVE-2015-4000": {
+      "name": "Logjam Attack on Weak Diffie-Hellman Groups (<2048-bit)",
+      "affected_dh_groups": [1, 2, 5],
+      "severity": "HIGH",
+      "cvss": 7.5,
+      "description": "Diffie-Hellman key exchanges using groups with 1024 bits or fewer can be precomputed and cracked by sophisticated adversaries, compromising session keys.",
+      "remediation": "Enforce DH Group 14 (2048-bit MODP), Group 19 (256-bit ECP), or Group 20 (384-bit ECP)."
+    },
+    "CVE-1999-0524": {
+      "name": "IKEv1 Aggressive Mode Pre-Shared Key Hash Leakage",
+      "affected_features": ["IKEv1_AGGRESSIVE_PSK"],
+      "severity": "HIGH",
+      "cvss": 8.1,
+      "description": "IKEv1 Aggressive Mode transmits authentication hashes containing the Pre-Shared Key in cleartext, allowing offline dictionary and brute-force cracking.",
+      "remediation": "Migrate from IKEv1 to IKEv2 or use IKEv1 Main Mode with digital certificates instead of PSK."
+    },
+    "REPLAY-ATTACK-001": {
+      "name": "Disabled Replay Protection or Missing Extended Sequence Numbers (ESN)",
+      "affected_features": ["NO_REPLAY_PROTECTION", "NO_ESN_HIGH_RATE"],
+      "severity": "MEDIUM",
+      "cvss": 5.9,
+      "description": "If replay protection is disabled or standard 32-bit sequence numbers wrap around on high-throughput links without ESN (RFC 4303), attackers can replay captured ESP packets.",
+      "remediation": "Enable anti-replay window (minimum 64 packets) and configure Extended Sequence Numbers (ESN)."
+    },
+    "NO-PFS-001": {
+      "name": "Perfect Forward Secrecy (PFS) Disabled",
+      "affected_features": ["NO_PFS"],
+      "severity": "HIGH",
+      "cvss": 7.1,
+      "description": "Without PFS, Phase 2 child SAs derive encryption keys directly from Phase 1 master keys. Compromise of the long-term Phase 1 key allows retroactive decryption of all historical IPsec traffic.",
+      "remediation": "Enable PFS (pfs=yes / esp_dh_group) to mandate a new Diffie-Hellman exchange for each child SA."
+    },
+    "MD5-SHA1-COLLISION": {
+      "name": "Use of Collision-Prone Hash Functions (MD5 / SHA-1)",
+      "affected_algorithms": ["MD5", "HMAC-MD5", "SHA-1", "HMAC-SHA1"],
+      "severity": "HIGH",
+      "cvss": 7.4,
+      "description": "MD5 and SHA-1 suffer from demonstrated practical cryptographic collision attacks. Their usage in integrity authentication undermines SA integrity verification.",
+      "remediation": "Upgrade integrity transforms to HMAC-SHA256, HMAC-SHA384, or use AEAD ciphers (AES-GCM)."
+    }
+  },
+  "traffic_profiles": {
+    "VoIP": {
+      "description": "Voice over IP (RTP inside ESP)",
+      "packet_size_range": [60, 220],
+      "mean_size": 130,
+      "size_std": 25,
+      "mean_iat": 0.02,
+      "iat_std": 0.005,
+      "bidirectional": true
+    },
+    "WhatsApp": {
+      "description": "Instant Messaging / WhatsApp chat bursts & keepalives",
+      "packet_size_range": [80, 500],
+      "mean_size": 180,
+      "size_std": 95,
+      "mean_iat": 0.35,
+      "iat_std": 0.65,
+      "bidirectional": true
+    },
+    "Email": {
+      "description": "SMTP/IMAP protocol transactions with body transfer",
+      "packet_size_range": [100, 1400],
+      "mean_size": 580,
+      "size_std": 420,
+      "mean_iat": 0.08,
+      "iat_std": 0.12,
+      "bidirectional": true
+    },
+    "Web": {
+      "description": "HTTP/HTTPS interactive web browsing bursts",
+      "packet_size_range": [70, 1460],
+      "mean_size": 750,
+      "size_std": 550,
+      "mean_iat": 0.04,
+      "iat_std": 0.08,
+      "bidirectional": true
+    },
+    "Video": {
+      "description": "High-definition video streaming / large MTU payloads",
+      "packet_size_range": [900, 1500],
+      "mean_size": 1380,
+      "size_std": 120,
+      "mean_iat": 0.006,
+      "iat_std": 0.003,
+      "bidirectional": false
+    },
+    "ICMP": {
+      "description": "ICMP Echo ping diagnostic packets",
+      "packet_size_range": [64, 128],
+      "mean_size": 84,
+      "size_std": 10,
+      "mean_iat": 1.0,
+      "iat_std": 0.05,
+      "bidirectional": true
+    }
+  }
+}

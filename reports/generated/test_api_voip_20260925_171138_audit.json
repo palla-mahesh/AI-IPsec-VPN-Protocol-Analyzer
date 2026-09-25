@@ -1,0 +1,1352 @@
+{
+  "filename": "test_api_voip.pcap",
+  "packet_count": 52,
+  "ike_negotiation": {
+    "ike_version": "IKEv2.0",
+    "initiator_spi": "0xb46c9022b8c986b5",
+    "responder_spi": "0x0000000000000000",
+    "exchange_types": [
+      "IKE_SA_INIT"
+    ],
+    "is_aggressive_mode": false,
+    "is_main_mode": false,
+    "is_ikev2": true,
+    "has_pfs": true,
+    "nat_traversal_detected": false,
+    "proposals": [
+      {
+        "proposal_number": 1,
+        "protocol": "IKE",
+        "spi": "",
+        "transforms": [
+          {
+            "type_id": 1,
+            "type_name": "ENCR (Encryption)",
+            "transform_id": 7,
+            "attributes": {},
+            "encryption": "AES-CBC"
+          },
+          {
+            "type_id": 3,
+            "type_name": "INTEG (Integrity)",
+            "transform_id": 8,
+            "attributes": {},
+            "integrity": "HMAC-SHA256-128"
+          },
+          {
+            "type_id": 4,
+            "type_name": "D-H (Diffie-Hellman Group)",
+            "transform_id": 14,
+            "attributes": {},
+            "dh_group": "Group 14 (2048-bit MODP)",
+            "dh_group_id": 14
+          }
+        ]
+      },
+      {
+        "proposal_number": 1,
+        "protocol": "IKE",
+        "spi": "",
+        "transforms": [
+          {
+            "type_id": 1,
+            "type_name": "ENCR (Encryption)",
+            "transform_id": 7,
+            "attributes": {},
+            "encryption": "AES-CBC"
+          },
+          {
+            "type_id": 3,
+            "type_name": "INTEG (Integrity)",
+            "transform_id": 8,
+            "attributes": {},
+            "integrity": "HMAC-SHA256-128"
+          },
+          {
+            "type_id": 4,
+            "type_name": "D-H (Diffie-Hellman Group)",
+            "transform_id": 14,
+            "attributes": {},
+            "dh_group": "Group 14 (2048-bit MODP)",
+            "dh_group_id": 14
+          }
+        ]
+      }
+    ],
+    "encryption_algorithms": [
+      "AES-CBC"
+    ],
+    "integrity_algorithms": [
+      "HMAC-SHA256-128"
+    ],
+    "dh_groups": [
+      "Group 14 (2048-bit MODP)"
+    ],
+    "key_lifetimes": [],
+    "vendor_ids": [],
+    "warnings": []
+  },
+  "esp_summary": {
+    "spis": [
+      "0x5e48f099",
+      "0xca70a12b"
+    ],
+    "packet_count": 50,
+    "total_bytes": 8756,
+    "min_seq": 1,
+    "max_seq": 25,
+    "sequence_gaps": 0,
+    "replay_errors": 0,
+    "average_entropy": 6.567,
+    "inferred_mode": "Transport",
+    "mode_confidence": 0.75,
+    "mode_reasoning": [
+      "Small homogeneous packet lengths consistent with host-level transport traffic."
+    ],
+    "packet_sizes": [
+      187,
+      151,
+      190,
+      175,
+      156,
+      163,
+      220,
+      187,
+      169,
+      191,
+      165,
+      182,
+      184,
+      171,
+      156,
+      194,
+      196,
+      179,
+      199,
+      162,
+      165,
+      188,
+      172,
+      180,
+      163,
+      187,
+      186,
+      155,
+      171,
+      176,
+      153,
+      169,
+      188,
+      171,
+      160,
+      170,
+      186,
+      168,
+      167,
+      160,
+      200,
+      173,
+      190,
+      163,
+      182,
+      173,
+      154,
+      166,
+      184,
+      159
+    ],
+    "packet_count_evaluated": 50
+  },
+  "flow_features": {
+    "pkt_count": 50,
+    "byte_count": 8756,
+    "duration": 0.9859,
+    "len_mean": 175.12,
+    "len_std": 14.51,
+    "len_min": 151.0,
+    "len_max": 220.0,
+    "len_median": 172.5,
+    "iat_mean": 0.02012,
+    "iat_std": 0.00316,
+    "jitter": 0.00383,
+    "pkt_rate": 50.72,
+    "byte_rate": 8881.38,
+    "ratio_small": 0.96,
+    "ratio_medium": 0.04,
+    "ratio_large": 0.0,
+    "fwd_bwd_pkt_ratio": 1.0,
+    "avg_burst_size": 50.0
+  },
+  "ai_classification": {
+    "predicted_class": "VoIP",
+    "confidence_score": 0.925,
+    "probabilities": {
+      "VoIP": 0.925,
+      "WhatsApp": 0.0583,
+      "Web": 0.0,
+      "Email": 0.0,
+      "Video": 0.0167,
+      "ICMP": 0.0
+    },
+    "top_features": [
+      {
+        "feature": "len_q90",
+        "value": 191.3,
+        "importance_weight": 0.078
+      },
+      {
+        "feature": "len_q75",
+        "value": 186.75,
+        "importance_weight": 0.075
+      },
+      {
+        "feature": "len_std",
+        "value": 14.51,
+        "importance_weight": 0.073
+      },
+      {
+        "feature": "len_max",
+        "value": 220.0,
+        "importance_weight": 0.072
+      },
+      {
+        "feature": "iat_min",
+        "value": 0.01,
+        "importance_weight": 0.062
+      }
+    ],
+    "model_version": "RandomForestClassifier (Accuracy: 100.0%)"
+  },
+  "security_assessment": {
+    "overall_score": 85,
+    "risk_level": "SECURE",
+    "compliance_status": {
+      "NIST_SP_800_77_Rev1": true,
+      "RFC_8221_ESP": true,
+      "RFC_8247_IKEv2": true,
+      "CNSA_Suite": false
+    },
+    "threat_matrix": [
+      {
+        "threat_id": "SEC-ENTROPY-001",
+        "title": "Suspicious Low-Entropy Payload (Possible ESP Null Encryption)",
+        "category": "Cryptographic Strength",
+        "severity": "CRITICAL",
+        "cvss": 9.0,
+        "description": "Average ESP payload entropy measured 6.57 bits/byte (expected > 7.9).",
+        "impact": "Tunnel may be running NULL encryption (RFC 2410) exposing plaintext payloads.",
+        "remediation": "Verify that ESP encryption transform is not set to NULL or ESP_NULL.",
+        "affected_component": "ESP Encrypted Data"
+      }
+    ],
+    "category_scores": {
+      "cryptographic_strength": 50,
+      "key_exchange_dh": 100,
+      "forward_secrecy_pfs": 100,
+      "replay_protection": 100,
+      "protocol_hardening": 100
+    },
+    "summary_recommendations": [
+      "IPsec configuration adheres to modern military and enterprise cryptographic standards."
+    ],
+    "total_vulnerabilities": 1,
+    "critical_count": 1,
+    "high_count": 0,
+    "medium_count": 0,
+    "low_count": 0
+  },
+  "packets_preview": [
+    {
+      "index": 1,
+      "timestamp": 1790336498.52888,
+      "src_ip": "192.168.10.1",
+      "dst_ip": "192.168.20.1",
+      "ip_version": 4,
+      "protocol": "IKE/ISAKMP",
+      "length": 406,
+      "summary": "IKE/ISAKMP 192.168.10.1 -> 192.168.20.1 (Len: 406)",
+      "layers": [
+        "IPv4",
+        "UDP",
+        "IKE"
+      ],
+      "details": {
+        "sport": 500,
+        "dport": 500,
+        "ike_raw": "b46c9022b8c986b5000000000000000021202208000000000000016c22000024000000200101000303000008010000070300000803000008000000080400000e28000108000e0000d24356600390f6b08c9aeda9726f895a33a647cecdd1f48db7b374e04895e8493313d52ff4053996015237daffac9adcbe56ab3048801cf21783c57436b3cdac02a6ada8445c2b1b26273b74d68d9dadb9fb510b3ec8aea96c5fdd6a860075562b4d2f4d0c5fea52b7d99c961b4f12561bb21d6d1bbd9caf9563c364b6306f07a4a1e4813713938ab9a06ba4958ae10e24ca48508611ed1f96ccb146029dbeebae87c4d0244306f8f0158636cb1b32681dd7fd9604381ac92669d0d2b996aa95e464a4b694ffdca29f2eb7f2a4257a9199d17b23ab0c5f6d580b7909d394bffe5de1eaf7beb0c317a9503973abf9f38bcfc91604038eaef7417638cef4e185ea0000002481bec450ef1ac2019b08b718b5e431b100d15070ef285f688204ff69e15ff66f"
+      },
+      "hex_preview": "00aabbccddee001122334455080045000188000100004011da11c0a80a01c0a8140101f401f401745774b46c9022b8c986b50000000000000000212022080000"
+    },
+    {
+      "index": 2,
+      "timestamp": 1790336498.56888,
+      "src_ip": "192.168.20.1",
+      "dst_ip": "192.168.10.1",
+      "ip_version": 4,
+      "protocol": "IKE/ISAKMP",
+      "length": 406,
+      "summary": "IKE/ISAKMP 192.168.20.1 -> 192.168.10.1 (Len: 406)",
+      "layers": [
+        "IPv4",
+        "UDP",
+        "IKE"
+      ],
+      "details": {
+        "sport": 500,
+        "dport": 500,
+        "ike_raw": "b46c9022b8c986b57a6163b148a80e2321202220000000000000016c22000024000000200101000303000008010000070300000803000008000000080400000e28000108000e0000d24356600390f6b08c9aeda9726f895a33a647cecdd1f48db7b374e04895e8493313d52ff4053996015237daffac9adcbe56ab3048801cf21783c57436b3cdac02a6ada8445c2b1b26273b74d68d9dadb9fb510b3ec8aea96c5fdd6a860075562b4d2f4d0c5fea52b7d99c961b4f12561bb21d6d1bbd9caf9563c364b6306f07a4a1e4813713938ab9a06ba4958ae10e24ca48508611ed1f96ccb146029dbeebae87c4d0244306f8f0158636cb1b32681dd7fd9604381ac92669d0d2b996aa95e464a4b694ffdca29f2eb7f2a4257a9199d17b23ab0c5f6d580b7909d394bffe5de1eaf7beb0c317a9503973abf9f38bcfc91604038eaef7417638cef4e185ea0000002481bec450ef1ac2019b08b718b5e431b100d15070ef285f688204ff69e15ff66f"
+      },
+      "hex_preview": "00112233445500aabbccddee080045000188000100004011da11c0a81401c0a80a0101f401f40174227eb46c9022b8c986b57a6163b148a80e23212022200000"
+    },
+    {
+      "index": 3,
+      "timestamp": 1790336498.67888,
+      "src_ip": "192.168.20.1",
+      "dst_ip": "192.168.10.1",
+      "ip_version": 4,
+      "protocol": "ESP",
+      "length": 187,
+      "summary": "ESP 192.168.20.1 -> 192.168.10.1 (Len: 187)",
+      "layers": [
+        "IPv4",
+        "ESP"
+      ],
+      "details": {
+        "spi": "0x5e48f099",
+        "seq": 1,
+        "data_len": 145,
+        "entropy": 6.6193
+      },
+      "hex_preview": "00112233445500aabbccddee0800450000ad000100004032dacbc0a81401c0a80a015e48f099000000016d1222a8d1369fd7d431cfadcdc2f74793e36dada767"
+    },
+    {
+      "index": 4,
+      "timestamp": 1790336498.701879,
+      "src_ip": "192.168.20.1",
+      "dst_ip": "192.168.10.1",
+      "ip_version": 4,
+      "protocol": "ESP",
+      "length": 151,
+      "summary": "ESP 192.168.20.1 -> 192.168.10.1 (Len: 151)",
+      "layers": [
+        "IPv4",
+        "ESP"
+      ],
+      "details": {
+        "spi": "0x5e48f099",
+        "seq": 2,
+        "data_len": 109,
+        "entropy": 6.3804
+      },
+      "hex_preview": "00112233445500aabbccddee080045000089000100004032daefc0a81401c0a80a015e48f09900000002d02033e5dda1560ccbea975c094981678c9fa79f6b2b"
+    },
+    {
+      "index": 5,
+      "timestamp": 1790336498.71903,
+      "src_ip": "192.168.10.1",
+      "dst_ip": "192.168.20.1",
+      "ip_version": 4,
+      "protocol": "ESP",
+      "length": 190,
+      "summary": "ESP 192.168.10.1 -> 192.168.20.1 (Len: 190)",
+      "layers": [
+        "IPv4",
+        "ESP"
+      ],
+      "details": {
+        "spi": "0xca70a12b",
+        "seq": 1,
+        "data_len": 148,
+        "entropy": 6.5869
+      },
+      "hex_preview": "00aabbccddee0011223344550800450000b0000100004032dac8c0a80a01c0a81401ca70a12b00000001b8ec6728f35bc95b3352783d7b33832e965835d16e0f"
+    },
+    {
+      "index": 6,
+      "timestamp": 1790336498.743587,
+      "src_ip": "192.168.20.1",
+      "dst_ip": "192.168.10.1",
+      "ip_version": 4,
+      "protocol": "ESP",
+      "length": 175,
+      "summary": "ESP 192.168.20.1 -> 192.168.10.1 (Len: 175)",
+      "layers": [
+        "IPv4",
+        "ESP"
+      ],
+      "details": {
+        "spi": "0x5e48f099",
+        "seq": 3,
+        "data_len": 133,
+        "entropy": 6.6737
+      },
+      "hex_preview": "00112233445500aabbccddee0800450000a1000100004032dad7c0a81401c0a80a015e48f09900000003bc33a5ef444f6d0e895a09d710f96c6726c2233986e1"
+    },
+    {
+      "index": 7,
+      "timestamp": 1790336498.763882,
+      "src_ip": "192.168.20.1",
+      "dst_ip": "192.168.10.1",
+      "ip_version": 4,
+      "protocol": "ESP",
+      "length": 156,
+      "summary": "ESP 192.168.20.1 -> 192.168.10.1 (Len: 156)",
+      "layers": [
+        "IPv4",
+        "ESP"
+      ],
+      "details": {
+        "spi": "0x5e48f099",
+        "seq": 4,
+        "data_len": 114,
+        "entropy": 6.438
+      },
+      "hex_preview": "00112233445500aabbccddee08004500008e000100004032daeac0a81401c0a80a015e48f09900000004aa4976fac7bdf1aa759063477af2d45fbe82f02516fc"
+    },
+    {
+      "index": 8,
+      "timestamp": 1790336498.786825,
+      "src_ip": "192.168.10.1",
+      "dst_ip": "192.168.20.1",
+      "ip_version": 4,
+      "protocol": "ESP",
+      "length": 163,
+      "summary": "ESP 192.168.10.1 -> 192.168.20.1 (Len: 163)",
+      "layers": [
+        "IPv4",
+        "ESP"
+      ],
+      "details": {
+        "spi": "0xca70a12b",
+        "seq": 2,
+        "data_len": 121,
+        "entropy": 6.4642
+      },
+      "hex_preview": "00aabbccddee001122334455080045000095000100004032dae3c0a80a01c0a81401ca70a12b00000002e111c7a584153db02e352b1e41b433bea5b59f7adca9"
+    },
+    {
+      "index": 9,
+      "timestamp": 1790336498.803657,
+      "src_ip": "192.168.20.1",
+      "dst_ip": "192.168.10.1",
+      "ip_version": 4,
+      "protocol": "ESP",
+      "length": 220,
+      "summary": "ESP 192.168.20.1 -> 192.168.10.1 (Len: 220)",
+      "layers": [
+        "IPv4",
+        "ESP"
+      ],
+      "details": {
+        "spi": "0x5e48f099",
+        "seq": 5,
+        "data_len": 178,
+        "entropy": 6.8758
+      },
+      "hex_preview": "00112233445500aabbccddee0800450000ce000100004032daaac0a81401c0a80a015e48f09900000005168d761683e0531f264a179abb6d652fe0245bd3809b"
+    },
+    {
+      "index": 10,
+      "timestamp": 1790336498.82345,
+      "src_ip": "192.168.10.1",
+      "dst_ip": "192.168.20.1",
+      "ip_version": 4,
+      "protocol": "ESP",
+      "length": 187,
+      "summary": "ESP 192.168.10.1 -> 192.168.20.1 (Len: 187)",
+      "layers": [
+        "IPv4",
+        "ESP"
+      ],
+      "details": {
+        "spi": "0xca70a12b",
+        "seq": 3,
+        "data_len": 145,
+        "entropy": 6.6659
+      },
+      "hex_preview": "00aabbccddee0011223344550800450000ad000100004032dacbc0a80a01c0a81401ca70a12b000000035149682332f4d169be52802c4762419006b27153c868"
+    },
+    {
+      "index": 11,
+      "timestamp": 1790336498.844199,
+      "src_ip": "192.168.10.1",
+      "dst_ip": "192.168.20.1",
+      "ip_version": 4,
+      "protocol": "ESP",
+      "length": 169,
+      "summary": "ESP 192.168.10.1 -> 192.168.20.1 (Len: 169)",
+      "layers": [
+        "IPv4",
+        "ESP"
+      ],
+      "details": {
+        "spi": "0xca70a12b",
+        "seq": 4,
+        "data_len": 127,
+        "entropy": 6.4491
+      },
+      "hex_preview": "00aabbccddee00112233445508004500009b000100004032daddc0a80a01c0a81401ca70a12b000000041ce1a20a77ee3e8e30db026a00623c920534f0abd905"
+    },
+    {
+      "index": 12,
+      "timestamp": 1790336498.86748,
+      "src_ip": "192.168.20.1",
+      "dst_ip": "192.168.10.1",
+      "ip_version": 4,
+      "protocol": "ESP",
+      "length": 191,
+      "summary": "ESP 192.168.20.1 -> 192.168.10.1 (Len: 191)",
+      "layers": [
+        "IPv4",
+        "ESP"
+      ],
+      "details": {
+        "spi": "0x5e48f099",
+        "seq": 6,
+        "data_len": 149,
+        "entropy": 6.7694
+      },
+      "hex_preview": "00112233445500aabbccddee0800450000b1000100004032dac7c0a81401c0a80a015e48f0990000000624b3b71131ff8c9b40401b4d9af568a3592b390d9cde"
+    },
+    {
+      "index": 13,
+      "timestamp": 1790336498.887481,
+      "src_ip": "192.168.10.1",
+      "dst_ip": "192.168.20.1",
+      "ip_version": 4,
+      "protocol": "ESP",
+      "length": 165,
+      "summary": "ESP 192.168.10.1 -> 192.168.20.1 (Len: 165)",
+      "layers": [
+        "IPv4",
+        "ESP"
+      ],
+      "details": {
+        "spi": "0xca70a12b",
+        "seq": 5,
+        "data_len": 123,
+        "entropy": 6.5563
+      },
+      "hex_preview": "00aabbccddee001122334455080045000097000100004032dae1c0a80a01c0a81401ca70a12b00000005589ff53f91c9815b8e8ced2d52cdae07989fc209d2d9"
+    },
+    {
+      "index": 14,
+      "timestamp": 1790336498.909502,
+      "src_ip": "192.168.10.1",
+      "dst_ip": "192.168.20.1",
+      "ip_version": 4,
+      "protocol": "ESP",
+      "length": 182,
+      "summary": "ESP 192.168.10.1 -> 192.168.20.1 (Len: 182)",
+      "layers": [
+        "IPv4",
+        "ESP"
+      ],
+      "details": {
+        "spi": "0xca70a12b",
+        "seq": 6,
+        "data_len": 140,
+        "entropy": 6.656
+      },
+      "hex_preview": "00aabbccddee0011223344550800450000a8000100004032dad0c0a80a01c0a81401ca70a12b00000006f311fe64ea2f841e80a588bfdce7df9db362d9b17ee4"
+    },
+    {
+      "index": 15,
+      "timestamp": 1790336498.926335,
+      "src_ip": "192.168.10.1",
+      "dst_ip": "192.168.20.1",
+      "ip_version": 4,
+      "protocol": "ESP",
+      "length": 184,
+      "summary": "ESP 192.168.10.1 -> 192.168.20.1 (Len: 184)",
+      "layers": [
+        "IPv4",
+        "ESP"
+      ],
+      "details": {
+        "spi": "0xca70a12b",
+        "seq": 7,
+        "data_len": 142,
+        "entropy": 6.6355
+      },
+      "hex_preview": "00aabbccddee0011223344550800450000aa000100004032dacec0a80a01c0a81401ca70a12b00000007279be59ca6282bbfd060b3ffde80680083ff88a1ba93"
+    },
+    {
+      "index": 16,
+      "timestamp": 1790336498.940616,
+      "src_ip": "192.168.20.1",
+      "dst_ip": "192.168.10.1",
+      "ip_version": 4,
+      "protocol": "ESP",
+      "length": 171,
+      "summary": "ESP 192.168.20.1 -> 192.168.10.1 (Len: 171)",
+      "layers": [
+        "IPv4",
+        "ESP"
+      ],
+      "details": {
+        "spi": "0x5e48f099",
+        "seq": 7,
+        "data_len": 129,
+        "entropy": 6.5751
+      },
+      "hex_preview": "00112233445500aabbccddee08004500009d000100004032dadbc0a81401c0a80a015e48f099000000074336b5289911dec8394a17ce2e3eece97325cc59d419"
+    },
+    {
+      "index": 17,
+      "timestamp": 1790336498.960551,
+      "src_ip": "192.168.20.1",
+      "dst_ip": "192.168.10.1",
+      "ip_version": 4,
+      "protocol": "ESP",
+      "length": 156,
+      "summary": "ESP 192.168.20.1 -> 192.168.10.1 (Len: 156)",
+      "layers": [
+        "IPv4",
+        "ESP"
+      ],
+      "details": {
+        "spi": "0x5e48f099",
+        "seq": 8,
+        "data_len": 114,
+        "entropy": 6.2976
+      },
+      "hex_preview": "00112233445500aabbccddee08004500008e000100004032daeac0a81401c0a80a015e48f09900000008efd5ef820b63af1ae0aacfc8d9959c0843e56b8e4bcd"
+    },
+    {
+      "index": 18,
+      "timestamp": 1790336498.984122,
+      "src_ip": "192.168.10.1",
+      "dst_ip": "192.168.20.1",
+      "ip_version": 4,
+      "protocol": "ESP",
+      "length": 194,
+      "summary": "ESP 192.168.10.1 -> 192.168.20.1 (Len: 194)",
+      "layers": [
+        "IPv4",
+        "ESP"
+      ],
+      "details": {
+        "spi": "0xca70a12b",
+        "seq": 8,
+        "data_len": 152,
+        "entropy": 6.7313
+      },
+      "hex_preview": "00aabbccddee0011223344550800450000b4000100004032dac4c0a80a01c0a81401ca70a12b000000083ca3457fcf16d92bf2459946b37f29b7cc1307296a2c"
+    },
+    {
+      "index": 19,
+      "timestamp": 1790336499.001778,
+      "src_ip": "192.168.20.1",
+      "dst_ip": "192.168.10.1",
+      "ip_version": 4,
+      "protocol": "ESP",
+      "length": 196,
+      "summary": "ESP 192.168.20.1 -> 192.168.10.1 (Len: 196)",
+      "layers": [
+        "IPv4",
+        "ESP"
+      ],
+      "details": {
+        "spi": "0x5e48f099",
+        "seq": 9,
+        "data_len": 154,
+        "entropy": 6.7049
+      },
+      "hex_preview": "00112233445500aabbccddee0800450000b6000100004032dac2c0a81401c0a80a015e48f0990000000914f1e7df0201999fc0d5b91eca74f752f66545be4903"
+    },
+    {
+      "index": 20,
+      "timestamp": 1790336499.027836,
+      "src_ip": "192.168.20.1",
+      "dst_ip": "192.168.10.1",
+      "ip_version": 4,
+      "protocol": "ESP",
+      "length": 179,
+      "summary": "ESP 192.168.20.1 -> 192.168.10.1 (Len: 179)",
+      "layers": [
+        "IPv4",
+        "ESP"
+      ],
+      "details": {
+        "spi": "0x5e48f099",
+        "seq": 10,
+        "data_len": 137,
+        "entropy": 6.6672
+      },
+      "hex_preview": "00112233445500aabbccddee0800450000a5000100004032dad3c0a81401c0a80a015e48f0990000000a4e4ce71fd95cfafb8badbef2e69ca4d853cde7c29721"
+    },
+    {
+      "index": 21,
+      "timestamp": 1790336499.048747,
+      "src_ip": "192.168.10.1",
+      "dst_ip": "192.168.20.1",
+      "ip_version": 4,
+      "protocol": "ESP",
+      "length": 199,
+      "summary": "ESP 192.168.10.1 -> 192.168.20.1 (Len: 199)",
+      "layers": [
+        "IPv4",
+        "ESP"
+      ],
+      "details": {
+        "spi": "0xca70a12b",
+        "seq": 9,
+        "data_len": 157,
+        "entropy": 6.8216
+      },
+      "hex_preview": "00aabbccddee0011223344550800450000b9000100004032dabfc0a80a01c0a81401ca70a12b000000098e568602537921fb2d7d0e9d48f76ee4e9e1374afce3"
+    },
+    {
+      "index": 22,
+      "timestamp": 1790336499.072373,
+      "src_ip": "192.168.20.1",
+      "dst_ip": "192.168.10.1",
+      "ip_version": 4,
+      "protocol": "ESP",
+      "length": 162,
+      "summary": "ESP 192.168.20.1 -> 192.168.10.1 (Len: 162)",
+      "layers": [
+        "IPv4",
+        "ESP"
+      ],
+      "details": {
+        "spi": "0x5e48f099",
+        "seq": 11,
+        "data_len": 120,
+        "entropy": 6.4506
+      },
+      "hex_preview": "00112233445500aabbccddee080045000094000100004032dae4c0a81401c0a80a015e48f0990000000b617328648a8896f6ce0357b35f5c711544cc77954b69"
+    },
+    {
+      "index": 23,
+      "timestamp": 1790336499.090413,
+      "src_ip": "192.168.10.1",
+      "dst_ip": "192.168.20.1",
+      "ip_version": 4,
+      "protocol": "ESP",
+      "length": 165,
+      "summary": "ESP 192.168.10.1 -> 192.168.20.1 (Len: 165)",
+      "layers": [
+        "IPv4",
+        "ESP"
+      ],
+      "details": {
+        "spi": "0xca70a12b",
+        "seq": 10,
+        "data_len": 123,
+        "entropy": 6.5075
+      },
+      "hex_preview": "00aabbccddee001122334455080045000097000100004032dae1c0a80a01c0a81401ca70a12b0000000a20aea9251712ff4808b2b4c44f38a744be2d20a9002e"
+    },
+    {
+      "index": 24,
+      "timestamp": 1790336499.105648,
+      "src_ip": "192.168.10.1",
+      "dst_ip": "192.168.20.1",
+      "ip_version": 4,
+      "protocol": "ESP",
+      "length": 188,
+      "summary": "ESP 192.168.10.1 -> 192.168.20.1 (Len: 188)",
+      "layers": [
+        "IPv4",
+        "ESP"
+      ],
+      "details": {
+        "spi": "0xca70a12b",
+        "seq": 11,
+        "data_len": 146,
+        "entropy": 6.7256
+      },
+      "hex_preview": "00aabbccddee0011223344550800450000ae000100004032dacac0a80a01c0a81401ca70a12b0000000bb795425ed3123089e5ebd69da1f52c4e68cb1167eab8"
+    },
+    {
+      "index": 25,
+      "timestamp": 1790336499.122149,
+      "src_ip": "192.168.10.1",
+      "dst_ip": "192.168.20.1",
+      "ip_version": 4,
+      "protocol": "ESP",
+      "length": 172,
+      "summary": "ESP 192.168.10.1 -> 192.168.20.1 (Len: 172)",
+      "layers": [
+        "IPv4",
+        "ESP"
+      ],
+      "details": {
+        "spi": "0xca70a12b",
+        "seq": 12,
+        "data_len": 130,
+        "entropy": 6.5838
+      },
+      "hex_preview": "00aabbccddee00112233445508004500009e000100004032dadac0a80a01c0a81401ca70a12b0000000c7f1c53339dd6e50e0a32077d7ac5eb2d214a35cc7cae"
+    },
+    {
+      "index": 26,
+      "timestamp": 1790336499.142268,
+      "src_ip": "192.168.20.1",
+      "dst_ip": "192.168.10.1",
+      "ip_version": 4,
+      "protocol": "ESP",
+      "length": 180,
+      "summary": "ESP 192.168.20.1 -> 192.168.10.1 (Len: 180)",
+      "layers": [
+        "IPv4",
+        "ESP"
+      ],
+      "details": {
+        "spi": "0x5e48f099",
+        "seq": 12,
+        "data_len": 138,
+        "entropy": 6.6029
+      },
+      "hex_preview": "00112233445500aabbccddee0800450000a6000100004032dad2c0a81401c0a80a015e48f0990000000ce1ba4f66d4182c49ccdbda3eda63415b7af4e787884d"
+    },
+    {
+      "index": 27,
+      "timestamp": 1790336499.160118,
+      "src_ip": "192.168.20.1",
+      "dst_ip": "192.168.10.1",
+      "ip_version": 4,
+      "protocol": "ESP",
+      "length": 163,
+      "summary": "ESP 192.168.20.1 -> 192.168.10.1 (Len: 163)",
+      "layers": [
+        "IPv4",
+        "ESP"
+      ],
+      "details": {
+        "spi": "0x5e48f099",
+        "seq": 13,
+        "data_len": 121,
+        "entropy": 6.5097
+      },
+      "hex_preview": "00112233445500aabbccddee080045000095000100004032dae3c0a81401c0a80a015e48f0990000000dee662f49a74bfab1c716da9ed6d4bc5d9fa5c48354d0"
+    },
+    {
+      "index": 28,
+      "timestamp": 1790336499.181382,
+      "src_ip": "192.168.20.1",
+      "dst_ip": "192.168.10.1",
+      "ip_version": 4,
+      "protocol": "ESP",
+      "length": 187,
+      "summary": "ESP 192.168.20.1 -> 192.168.10.1 (Len: 187)",
+      "layers": [
+        "IPv4",
+        "ESP"
+      ],
+      "details": {
+        "spi": "0x5e48f099",
+        "seq": 14,
+        "data_len": 145,
+        "entropy": 6.7143
+      },
+      "hex_preview": "00112233445500aabbccddee0800450000ad000100004032dacbc0a81401c0a80a015e48f0990000000e483f5c25c455629418673144bd3b4333841554adb4fa"
+    },
+    {
+      "index": 29,
+      "timestamp": 1790336499.197594,
+      "src_ip": "192.168.10.1",
+      "dst_ip": "192.168.20.1",
+      "ip_version": 4,
+      "protocol": "ESP",
+      "length": 186,
+      "summary": "ESP 192.168.10.1 -> 192.168.20.1 (Len: 186)",
+      "layers": [
+        "IPv4",
+        "ESP"
+      ],
+      "details": {
+        "spi": "0xca70a12b",
+        "seq": 13,
+        "data_len": 144,
+        "entropy": 6.6854
+      },
+      "hex_preview": "00aabbccddee0011223344550800450000ac000100004032daccc0a80a01c0a81401ca70a12b0000000df67467e428ab5e8a16487569a522e94ac9987151ffe8"
+    },
+    {
+      "index": 30,
+      "timestamp": 1790336499.221071,
+      "src_ip": "192.168.10.1",
+      "dst_ip": "192.168.20.1",
+      "ip_version": 4,
+      "protocol": "ESP",
+      "length": 155,
+      "summary": "ESP 192.168.10.1 -> 192.168.20.1 (Len: 155)",
+      "layers": [
+        "IPv4",
+        "ESP"
+      ],
+      "details": {
+        "spi": "0xca70a12b",
+        "seq": 14,
+        "data_len": 113,
+        "entropy": 6.2845
+      },
+      "hex_preview": "00aabbccddee00112233445508004500008d000100004032daebc0a80a01c0a81401ca70a12b0000000ef7080c92aebaac45fa58efa1b0cc2a065dd4c9437ee2"
+    },
+    {
+      "index": 31,
+      "timestamp": 1790336499.241301,
+      "src_ip": "192.168.20.1",
+      "dst_ip": "192.168.10.1",
+      "ip_version": 4,
+      "protocol": "ESP",
+      "length": 171,
+      "summary": "ESP 192.168.20.1 -> 192.168.10.1 (Len: 171)",
+      "layers": [
+        "IPv4",
+        "ESP"
+      ],
+      "details": {
+        "spi": "0x5e48f099",
+        "seq": 15,
+        "data_len": 129,
+        "entropy": 6.5847
+      },
+      "hex_preview": "00112233445500aabbccddee08004500009d000100004032dadbc0a81401c0a80a015e48f0990000000f17d9019f53685f07d9220b902635bacfd862cdefbe08"
+    },
+    {
+      "index": 32,
+      "timestamp": 1790336499.262884,
+      "src_ip": "192.168.20.1",
+      "dst_ip": "192.168.10.1",
+      "ip_version": 4,
+      "protocol": "ESP",
+      "length": 176,
+      "summary": "ESP 192.168.20.1 -> 192.168.10.1 (Len: 176)",
+      "layers": [
+        "IPv4",
+        "ESP"
+      ],
+      "details": {
+        "spi": "0x5e48f099",
+        "seq": 16,
+        "data_len": 134,
+        "entropy": 6.551
+      },
+      "hex_preview": "00112233445500aabbccddee0800450000a2000100004032dad6c0a81401c0a80a015e48f09900000010d05e1895ce1c0613e45b7ae4593a3a47bb2421ecb7a8"
+    },
+    {
+      "index": 33,
+      "timestamp": 1790336499.280728,
+      "src_ip": "192.168.10.1",
+      "dst_ip": "192.168.20.1",
+      "ip_version": 4,
+      "protocol": "ESP",
+      "length": 153,
+      "summary": "ESP 192.168.10.1 -> 192.168.20.1 (Len: 153)",
+      "layers": [
+        "IPv4",
+        "ESP"
+      ],
+      "details": {
+        "spi": "0xca70a12b",
+        "seq": 15,
+        "data_len": 111,
+        "entropy": 6.4813
+      },
+      "hex_preview": "00aabbccddee00112233445508004500008b000100004032daedc0a80a01c0a81401ca70a12b0000000fba34fd2112e61e902a66b2f22e24bfc85b4a42aac6ed"
+    },
+    {
+      "index": 34,
+      "timestamp": 1790336499.298507,
+      "src_ip": "192.168.10.1",
+      "dst_ip": "192.168.20.1",
+      "ip_version": 4,
+      "protocol": "ESP",
+      "length": 169,
+      "summary": "ESP 192.168.10.1 -> 192.168.20.1 (Len: 169)",
+      "layers": [
+        "IPv4",
+        "ESP"
+      ],
+      "details": {
+        "spi": "0xca70a12b",
+        "seq": 16,
+        "data_len": 127,
+        "entropy": 6.4767
+      },
+      "hex_preview": "00aabbccddee00112233445508004500009b000100004032daddc0a80a01c0a81401ca70a12b00000010d298c2d73ebc0f87c10730368b8d2df3a838ec0c6c8f"
+    },
+    {
+      "index": 35,
+      "timestamp": 1790336499.320062,
+      "src_ip": "192.168.20.1",
+      "dst_ip": "192.168.10.1",
+      "ip_version": 4,
+      "protocol": "ESP",
+      "length": 188,
+      "summary": "ESP 192.168.20.1 -> 192.168.10.1 (Len: 188)",
+      "layers": [
+        "IPv4",
+        "ESP"
+      ],
+      "details": {
+        "spi": "0x5e48f099",
+        "seq": 17,
+        "data_len": 146,
+        "entropy": 6.6135
+      },
+      "hex_preview": "00112233445500aabbccddee0800450000ae000100004032dacac0a81401c0a80a015e48f09900000011aeba9d5f0ca49b7d7e95ab7b26195122b3deae79c0fb"
+    },
+    {
+      "index": 36,
+      "timestamp": 1790336499.34071,
+      "src_ip": "192.168.20.1",
+      "dst_ip": "192.168.10.1",
+      "ip_version": 4,
+      "protocol": "ESP",
+      "length": 171,
+      "summary": "ESP 192.168.20.1 -> 192.168.10.1 (Len: 171)",
+      "layers": [
+        "IPv4",
+        "ESP"
+      ],
+      "details": {
+        "spi": "0x5e48f099",
+        "seq": 18,
+        "data_len": 129,
+        "entropy": 6.482
+      },
+      "hex_preview": "00112233445500aabbccddee08004500009d000100004032dadbc0a81401c0a80a015e48f0990000001277f686eba4ee25850b2126ecedc6209f1895e38878ae"
+    },
+    {
+      "index": 37,
+      "timestamp": 1790336499.368711,
+      "src_ip": "192.168.10.1",
+      "dst_ip": "192.168.20.1",
+      "ip_version": 4,
+      "protocol": "ESP",
+      "length": 160,
+      "summary": "ESP 192.168.10.1 -> 192.168.20.1 (Len: 160)",
+      "layers": [
+        "IPv4",
+        "ESP"
+      ],
+      "details": {
+        "spi": "0xca70a12b",
+        "seq": 17,
+        "data_len": 118,
+        "entropy": 6.5881
+      },
+      "hex_preview": "00aabbccddee001122334455080045000092000100004032dae6c0a80a01c0a81401ca70a12b00000011f229909c696fea3d2ccadec87fbb530c1882504cfaff"
+    },
+    {
+      "index": 38,
+      "timestamp": 1790336499.392799,
+      "src_ip": "192.168.20.1",
+      "dst_ip": "192.168.10.1",
+      "ip_version": 4,
+      "protocol": "ESP",
+      "length": 170,
+      "summary": "ESP 192.168.20.1 -> 192.168.10.1 (Len: 170)",
+      "layers": [
+        "IPv4",
+        "ESP"
+      ],
+      "details": {
+        "spi": "0x5e48f099",
+        "seq": 19,
+        "data_len": 128,
+        "entropy": 6.4608
+      },
+      "hex_preview": "00112233445500aabbccddee08004500009c000100004032dadcc0a81401c0a80a015e48f09900000013aa0e05983f1b38bf841f1c7fb9fbf2637e7fe1c0bc90"
+    },
+    {
+      "index": 39,
+      "timestamp": 1790336499.407021,
+      "src_ip": "192.168.20.1",
+      "dst_ip": "192.168.10.1",
+      "ip_version": 4,
+      "protocol": "ESP",
+      "length": 186,
+      "summary": "ESP 192.168.20.1 -> 192.168.10.1 (Len: 186)",
+      "layers": [
+        "IPv4",
+        "ESP"
+      ],
+      "details": {
+        "spi": "0x5e48f099",
+        "seq": 20,
+        "data_len": 144,
+        "entropy": 6.6464
+      },
+      "hex_preview": "00112233445500aabbccddee0800450000ac000100004032daccc0a81401c0a80a015e48f099000000147007fd9aed6b560bf3f90b14d2f2dc2e2c8cac8a5a9f"
+    },
+    {
+      "index": 40,
+      "timestamp": 1790336499.423465,
+      "src_ip": "192.168.10.1",
+      "dst_ip": "192.168.20.1",
+      "ip_version": 4,
+      "protocol": "ESP",
+      "length": 168,
+      "summary": "ESP 192.168.10.1 -> 192.168.20.1 (Len: 168)",
+      "layers": [
+        "IPv4",
+        "ESP"
+      ],
+      "details": {
+        "spi": "0xca70a12b",
+        "seq": 18,
+        "data_len": 126,
+        "entropy": 6.5406
+      },
+      "hex_preview": "00aabbccddee00112233445508004500009a000100004032dadec0a80a01c0a81401ca70a12b0000001214af6ab301569dde9d18522f012fa5c784f3d3fe9bec"
+    },
+    {
+      "index": 41,
+      "timestamp": 1790336499.446163,
+      "src_ip": "192.168.10.1",
+      "dst_ip": "192.168.20.1",
+      "ip_version": 4,
+      "protocol": "ESP",
+      "length": 167,
+      "summary": "ESP 192.168.10.1 -> 192.168.20.1 (Len: 167)",
+      "layers": [
+        "IPv4",
+        "ESP"
+      ],
+      "details": {
+        "spi": "0xca70a12b",
+        "seq": 19,
+        "data_len": 125,
+        "entropy": 6.5356
+      },
+      "hex_preview": "00aabbccddee001122334455080045000099000100004032dadfc0a80a01c0a81401ca70a12b0000001303b7435afec1d0bca8a2bff235ed0d894184aab4fa0a"
+    },
+    {
+      "index": 42,
+      "timestamp": 1790336499.468898,
+      "src_ip": "192.168.10.1",
+      "dst_ip": "192.168.20.1",
+      "ip_version": 4,
+      "protocol": "ESP",
+      "length": 160,
+      "summary": "ESP 192.168.10.1 -> 192.168.20.1 (Len: 160)",
+      "layers": [
+        "IPv4",
+        "ESP"
+      ],
+      "details": {
+        "spi": "0xca70a12b",
+        "seq": 20,
+        "data_len": 118,
+        "entropy": 6.4961
+      },
+      "hex_preview": "00aabbccddee001122334455080045000092000100004032dae6c0a80a01c0a81401ca70a12b00000014b711f9cbd8f2435ee0dfb54aeff12adf4b10a4d1ee81"
+    },
+    {
+      "index": 43,
+      "timestamp": 1790336499.492613,
+      "src_ip": "192.168.20.1",
+      "dst_ip": "192.168.10.1",
+      "ip_version": 4,
+      "protocol": "ESP",
+      "length": 200,
+      "summary": "ESP 192.168.20.1 -> 192.168.10.1 (Len: 200)",
+      "layers": [
+        "IPv4",
+        "ESP"
+      ],
+      "details": {
+        "spi": "0x5e48f099",
+        "seq": 21,
+        "data_len": 158,
+        "entropy": 6.8115
+      },
+      "hex_preview": "00112233445500aabbccddee0800450000ba000100004032dabec0a81401c0a80a015e48f09900000015c1656dbcc5ec6a1e5d55ea56494d5ab67f7c0c9d5a4f"
+    },
+    {
+      "index": 44,
+      "timestamp": 1790336499.515454,
+      "src_ip": "192.168.10.1",
+      "dst_ip": "192.168.20.1",
+      "ip_version": 4,
+      "protocol": "ESP",
+      "length": 173,
+      "summary": "ESP 192.168.10.1 -> 192.168.20.1 (Len: 173)",
+      "layers": [
+        "IPv4",
+        "ESP"
+      ],
+      "details": {
+        "spi": "0xca70a12b",
+        "seq": 21,
+        "data_len": 131,
+        "entropy": 6.4608
+      },
+      "hex_preview": "00aabbccddee00112233445508004500009f000100004032dad9c0a80a01c0a81401ca70a12b000000150ead9410fc13d56a050380b68eb1513bb99e351cf465"
+    },
+    {
+      "index": 45,
+      "timestamp": 1790336499.533545,
+      "src_ip": "192.168.10.1",
+      "dst_ip": "192.168.20.1",
+      "ip_version": 4,
+      "protocol": "ESP",
+      "length": 190,
+      "summary": "ESP 192.168.10.1 -> 192.168.20.1 (Len: 190)",
+      "layers": [
+        "IPv4",
+        "ESP"
+      ],
+      "details": {
+        "spi": "0xca70a12b",
+        "seq": 22,
+        "data_len": 148,
+        "entropy": 6.619
+      },
+      "hex_preview": "00aabbccddee0011223344550800450000b0000100004032dac8c0a80a01c0a81401ca70a12b00000016cc12c105a9b53bf4bc2d1a79c3a539d378f050091275"
+    },
+    {
+      "index": 46,
+      "timestamp": 1790336499.549757,
+      "src_ip": "192.168.20.1",
+      "dst_ip": "192.168.10.1",
+      "ip_version": 4,
+      "protocol": "ESP",
+      "length": 163,
+      "summary": "ESP 192.168.20.1 -> 192.168.10.1 (Len: 163)",
+      "layers": [
+        "IPv4",
+        "ESP"
+      ],
+      "details": {
+        "spi": "0x5e48f099",
+        "seq": 22,
+        "data_len": 121,
+        "entropy": 6.4146
+      },
+      "hex_preview": "00112233445500aabbccddee080045000095000100004032dae3c0a81401c0a80a015e48f0990000001679c3c407d713289b95d0e2e701c6c02a3a4de6b6397b"
+    },
+    {
+      "index": 47,
+      "timestamp": 1790336499.571739,
+      "src_ip": "192.168.20.1",
+      "dst_ip": "192.168.10.1",
+      "ip_version": 4,
+      "protocol": "ESP",
+      "length": 182,
+      "summary": "ESP 192.168.20.1 -> 192.168.10.1 (Len: 182)",
+      "layers": [
+        "IPv4",
+        "ESP"
+      ],
+      "details": {
+        "spi": "0x5e48f099",
+        "seq": 23,
+        "data_len": 140,
+        "entropy": 6.5302
+      },
+      "hex_preview": "00112233445500aabbccddee0800450000a8000100004032dad0c0a81401c0a80a015e48f099000000172fc305ec751024b76566d0a8546059013b5bde9db70f"
+    },
+    {
+      "index": 48,
+      "timestamp": 1790336499.589912,
+      "src_ip": "192.168.10.1",
+      "dst_ip": "192.168.20.1",
+      "ip_version": 4,
+      "protocol": "ESP",
+      "length": 173,
+      "summary": "ESP 192.168.10.1 -> 192.168.20.1 (Len: 173)",
+      "layers": [
+        "IPv4",
+        "ESP"
+      ],
+      "details": {
+        "spi": "0xca70a12b",
+        "seq": 23,
+        "data_len": 131,
+        "entropy": 6.4855
+      },
+      "hex_preview": "00aabbccddee00112233445508004500009f000100004032dad9c0a80a01c0a81401ca70a12b0000001717d8698a9d64937ad11ae1db7336b34987041cbaecdd"
+    },
+    {
+      "index": 49,
+      "timestamp": 1790336499.612499,
+      "src_ip": "192.168.20.1",
+      "dst_ip": "192.168.10.1",
+      "ip_version": 4,
+      "protocol": "ESP",
+      "length": 154,
+      "summary": "ESP 192.168.20.1 -> 192.168.10.1 (Len: 154)",
+      "layers": [
+        "IPv4",
+        "ESP"
+      ],
+      "details": {
+        "spi": "0x5e48f099",
+        "seq": 24,
+        "data_len": 112,
+        "entropy": 6.3899
+      },
+      "hex_preview": "00112233445500aabbccddee08004500008c000100004032daecc0a81401c0a80a015e48f0990000001881e2db105a40cf30369a81c5d3f3a863ae8420239827"
+    },
+    {
+      "index": 50,
+      "timestamp": 1790336499.628262,
+      "src_ip": "192.168.10.1",
+      "dst_ip": "192.168.20.1",
+      "ip_version": 4,
+      "protocol": "ESP",
+      "length": 166,
+      "summary": "ESP 192.168.10.1 -> 192.168.20.1 (Len: 166)",
+      "layers": [
+        "IPv4",
+        "ESP"
+      ],
+      "details": {
+        "spi": "0xca70a12b",
+        "seq": 24,
+        "data_len": 124,
+        "entropy": 6.4298
+      },
+      "hex_preview": "00aabbccddee001122334455080045000098000100004032dae0c0a80a01c0a81401ca70a12b0000001868af326a066b14d744d653c1a2915308da034cebf5d6"
+    },
+    {
+      "index": 51,
+      "timestamp": 1790336499.645701,
+      "src_ip": "192.168.10.1",
+      "dst_ip": "192.168.20.1",
+      "ip_version": 4,
+      "protocol": "ESP",
+      "length": 184,
+      "summary": "ESP 192.168.10.1 -> 192.168.20.1 (Len: 184)",
+      "layers": [
+        "IPv4",
+        "ESP"
+      ],
+      "details": {
+        "spi": "0xca70a12b",
+        "seq": 25,
+        "data_len": 142,
+        "entropy": 6.6953
+      },
+      "hex_preview": "00aabbccddee0011223344550800450000aa000100004032dacec0a80a01c0a81401ca70a12b000000199fefb936dcc01f1900f0bf1a93cdee91c3ea0f1c7e97"
+    },
+    {
+      "index": 52,
+      "timestamp": 1790336499.664763,
+      "src_ip": "192.168.20.1",
+      "dst_ip": "192.168.10.1",
+      "ip_version": 4,
+      "protocol": "ESP",
+      "length": 159,
+      "summary": "ESP 192.168.20.1 -> 192.168.10.1 (Len: 159)",
+      "layers": [
+        "IPv4",
+        "ESP"
+      ],
+      "details": {
+        "spi": "0x5e48f099",
+        "seq": 25,
+        "data_len": 117,
+        "entropy": 6.4066
+      },
+      "hex_preview": "00112233445500aabbccddee080045000091000100004032dae7c0a81401c0a80a015e48f09900000019edda48c6ef251237d49b517ce285188afab72d86dd52"
+    }
+  ]
+}

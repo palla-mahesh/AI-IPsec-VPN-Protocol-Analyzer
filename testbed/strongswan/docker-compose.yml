@@ -1,0 +1,46 @@
+version: '3.8'
+
+services:
+  # Gateway Alpha (Initiator)
+  vpn-gateway-alpha:
+    image: strongswan/strongswan:latest
+    container_name: vpn-alpha
+    privileged: true
+    cap_add:
+      - NET_ADMIN
+    volumes:
+      - ./ipsec.conf:/etc/ipsec.conf:ro
+    networks:
+      vpn_transit:
+        ipv4_address: 192.168.10.1
+      alpha_lan:
+        ipv4_address: 10.10.0.1
+
+  # Gateway Beta (Responder)
+  vpn-gateway-beta:
+    image: strongswan/strongswan:latest
+    container_name: vpn-beta
+    privileged: true
+    cap_add:
+      - NET_ADMIN
+    volumes:
+      - ./ipsec.conf:/etc/ipsec.conf:ro
+    networks:
+      vpn_transit:
+        ipv4_address: 192.168.20.1
+      beta_lan:
+        ipv4_address: 10.20.0.1
+
+networks:
+  vpn_transit:
+    ipam:
+      config:
+        - subnet: 192.168.0.0/16
+  alpha_lan:
+    ipam:
+      config:
+        - subnet: 10.10.0.0/16
+  beta_lan:
+    ipam:
+      config:
+        - subnet: 10.20.0.0/16

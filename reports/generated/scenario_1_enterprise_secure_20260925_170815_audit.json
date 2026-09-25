@@ -1,0 +1,314 @@
+{
+  "filename": "scenario_1_enterprise_secure.pcap",
+  "packet_count": 182,
+  "ike_negotiation": {
+    "ike_version": "IKEv2.0",
+    "initiator_spi": "0x34be211f0ad658d1",
+    "responder_spi": "0x0000000000000000",
+    "exchange_types": [
+      "IKE_SA_INIT"
+    ],
+    "is_aggressive_mode": false,
+    "is_main_mode": false,
+    "is_ikev2": true,
+    "has_pfs": true,
+    "nat_traversal_detected": false,
+    "proposals": [
+      {
+        "proposal_number": 1,
+        "protocol": "IKE",
+        "spi": "",
+        "transforms": [
+          {
+            "type_id": 1,
+            "type_name": "ENCR (Encryption)",
+            "transform_id": 13,
+            "attributes": {},
+            "encryption": "AES-256-GCM"
+          },
+          {
+            "type_id": 3,
+            "type_name": "INTEG (Integrity)",
+            "transform_id": 0,
+            "attributes": {},
+            "integrity": "INTEG-0"
+          },
+          {
+            "type_id": 4,
+            "type_name": "D-H (Diffie-Hellman Group)",
+            "transform_id": 19,
+            "attributes": {},
+            "dh_group": "Group 19 (256-bit Random ECP)",
+            "dh_group_id": 19
+          }
+        ]
+      },
+      {
+        "proposal_number": 1,
+        "protocol": "IKE",
+        "spi": "",
+        "transforms": [
+          {
+            "type_id": 1,
+            "type_name": "ENCR (Encryption)",
+            "transform_id": 13,
+            "attributes": {},
+            "encryption": "AES-256-GCM"
+          },
+          {
+            "type_id": 3,
+            "type_name": "INTEG (Integrity)",
+            "transform_id": 0,
+            "attributes": {},
+            "integrity": "INTEG-0"
+          },
+          {
+            "type_id": 4,
+            "type_name": "D-H (Diffie-Hellman Group)",
+            "transform_id": 19,
+            "attributes": {},
+            "dh_group": "Group 19 (256-bit Random ECP)",
+            "dh_group_id": 19
+          }
+        ]
+      }
+    ],
+    "encryption_algorithms": [
+      "AES-256-GCM"
+    ],
+    "integrity_algorithms": [
+      "INTEG-0"
+    ],
+    "dh_groups": [
+      "Group 19 (256-bit Random ECP)"
+    ],
+    "key_lifetimes": [],
+    "vendor_ids": [],
+    "warnings": []
+  },
+  "esp_summary": {
+    "spis": [
+      "0xca70a12b",
+      "0x5e48f099"
+    ],
+    "packet_count": 180,
+    "total_bytes": 140869,
+    "min_seq": 1,
+    "max_seq": 129,
+    "sequence_gaps": 0,
+    "replay_errors": 0,
+    "average_entropy": 0.0,
+    "inferred_mode": "Tunnel",
+    "mode_confidence": 0.85,
+    "mode_reasoning": [
+      "Payload sizes (max 1514B) conform to gateway tunnel MTU encapsulation."
+    ],
+    "packet_sizes": [
+      1451,
+      1514,
+      1009,
+      118,
+      473,
+      380,
+      341,
+      118,
+      645,
+      1258,
+      555,
+      1083,
+      546,
+      1005,
+      362,
+      498,
+      547,
+      831,
+      635,
+      831,
+      633,
+      1197,
+      762,
+      1107,
+      1452,
+      1241,
+      298,
+      1152,
+      118,
+      1111,
+      331,
+      830,
+      256,
+      1142,
+      975,
+      851,
+      803,
+      1170,
+      1011,
+      812,
+      118,
+      1504,
+      533,
+      382,
+      815,
+      897,
+      662,
+      233,
+      582,
+      1009,
+      964,
+      466,
+      283,
+      327,
+      678,
+      978,
+      1514,
+      318,
+      1116,
+      695,
+      1474,
+      867,
+      1504,
+      165,
+      508,
+      698,
+      1244,
+      646,
+      893,
+      638,
+      678,
+      1044,
+      904,
+      443,
+      948,
+      1131,
+      1319,
+      987,
+      1390,
+      572,
+      674,
+      118,
+      118,
+      529,
+      354,
+      1139,
+      878,
+      624,
+      690,
+      980,
+      1509,
+      1280,
+      118,
+      842,
+      1075,
+      989,
+      310,
+      486,
+      453,
+      745
+    ],
+    "packet_count_evaluated": 180
+  },
+  "flow_features": {
+    "pkt_count": 180,
+    "byte_count": 140869,
+    "duration": 11.9463,
+    "len_mean": 782.61,
+    "len_std": 383.83,
+    "len_min": 118.0,
+    "len_max": 1514.0,
+    "len_median": 778.0,
+    "iat_mean": 0.06674,
+    "iat_std": 0.06663,
+    "jitter": 0.06962,
+    "pkt_rate": 15.07,
+    "byte_rate": 11791.85,
+    "ratio_small": 0.078,
+    "ratio_medium": 0.556,
+    "ratio_large": 0.367,
+    "fwd_bwd_pkt_ratio": 2.529,
+    "avg_burst_size": 2.0
+  },
+  "ai_classification": {
+    "predicted_class": "Email",
+    "confidence_score": 0.483,
+    "probabilities": {
+      "VoIP": 0.05,
+      "WhatsApp": 0.0083,
+      "Web": 0.275,
+      "Email": 0.4833,
+      "Video": 0.1833,
+      "ICMP": 0.0
+    },
+    "top_features": [
+      {
+        "feature": "len_q90",
+        "value": 1319.3,
+        "importance_weight": 0.078
+      },
+      {
+        "feature": "len_q75",
+        "value": 1048.75,
+        "importance_weight": 0.075
+      },
+      {
+        "feature": "len_std",
+        "value": 383.83,
+        "importance_weight": 0.073
+      },
+      {
+        "feature": "len_max",
+        "value": 1514.0,
+        "importance_weight": 0.072
+      },
+      {
+        "feature": "iat_min",
+        "value": 0.0,
+        "importance_weight": 0.062
+      }
+    ],
+    "model_version": "RandomForestClassifier (Accuracy: 100.0%)"
+  },
+  "security_assessment": {
+    "overall_score": 100,
+    "risk_level": "SECURE",
+    "compliance_status": {
+      "NIST_SP_800_77_Rev1": true,
+      "RFC_8221_ESP": true,
+      "RFC_8247_IKEv2": true,
+      "CNSA_Suite": false
+    },
+    "threat_matrix": [],
+    "category_scores": {
+      "cryptographic_strength": 100,
+      "key_exchange_dh": 100,
+      "forward_secrecy_pfs": 100,
+      "replay_protection": 100,
+      "protocol_hardening": 100
+    },
+    "summary_recommendations": [
+      "IPsec configuration adheres to modern military and enterprise cryptographic standards."
+    ],
+    "total_vulnerabilities": 0,
+    "critical_count": 0,
+    "high_count": 0,
+    "medium_count": 0,
+    "low_count": 0
+  },
+  "packets_preview": [
+    {
+      "index": 1,
+      "timestamp": 1790336097.997865,
+      "src_ip": "192.168.10.1",
+      "dst_ip": "192.168.20.1",
+      "ip_version": 4,
+      "protocol": "IKE/ISAKMP",
+      "length": 406,
+      "summary": "IKE/ISAKMP 192.168.10.1 -> 192.168.20.1 (Len: 406)",
+      "layers": [
+        "IPv4",
+        "UDP",
+        "IKE"
+      ],
+      "details": {
+        "sport": 500,
+        "dport": 500,
+        "ike_raw": 

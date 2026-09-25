@@ -1,0 +1,883 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI-Powered IPsec VPN Protocol Analyzer | NTRO Problem 26160</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        cyber: {
+                            900: '#0b0f19',
+                            800: '#111827',
+                            700: '#1f2937',
+                            accent: '#0284c7',
+                            neon: '#38bdf8',
+                            danger: '#ef4444',
+                            warning: '#f59e0b',
+                            success: '#10b981'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .custom-scroll::-webkit-scrollbar { width: 6px; height: 6px; }
+        .custom-scroll::-webkit-scrollbar-track { background: #111827; }
+        .custom-scroll::-webkit-scrollbar-thumb { background: #374151; border-radius: 3px; }
+        .glow { box-shadow: 0 0 15px rgba(56, 189, 248, 0.25); }
+    </style>
+</head>
+<body class="bg-[#090d16] text-gray-200 min-h-screen font-sans antialiased custom-scroll">
+
+    <!-- Top Navigation Header -->
+    <header class="border-b border-gray-800 bg-[#0c1220]/90 backdrop-blur sticky top-0 z-50 px-6 py-4">
+        <div class="max-w-7xl mx-auto flex items-center justify-between">
+            <div class="flex items-center space-x-3">
+                <div class="h-10 w-10 rounded-lg bg-sky-500/10 border border-sky-500/30 flex items-center justify-center text-sky-400">
+                    <i data-lucide="shield-check" class="w-6 h-6"></i>
+                </div>
+                <div>
+                    <div class="flex items-center space-x-2">
+                        <span class="text-xs font-bold uppercase tracking-wider px-2 py-0.5 rounded bg-sky-500/20 text-sky-400 border border-sky-500/30">NTRO PS-26160</span>
+                        <span class="text-xs text-gray-400">Classification & Security Framework</span>
+                    </div>
+                    <h1 class="text-lg font-bold text-white tracking-tight">AI-Powered IPsec VPN Protocol Analyzer</h1>
+                </div>
+            </div>
+
+            <!-- Header Action Controls -->
+            <div class="flex items-center space-x-3">
+                <button onclick="document.getElementById('pcapInput').click()" class="flex items-center space-x-2 bg-gray-800 hover:bg-gray-700 text-gray-200 border border-gray-700 px-3 py-2 rounded-lg text-sm font-medium transition">
+                    <i data-lucide="upload-cloud" class="w-4 h-4 text-sky-400"></i>
+                    <span>Upload PCAP</span>
+                </button>
+                <input type="file" id="pcapInput" accept=".pcap,.pcapng" class="hidden" onchange="uploadPCAP(this.files[0])">
+
+                <button onclick="openCustomModal()" class="flex items-center space-x-2 bg-sky-600 hover:bg-sky-500 text-white px-3 py-2 rounded-lg text-sm font-medium transition shadow-lg shadow-sky-600/20">
+                    <i data-lucide="sliders" class="w-4 h-4"></i>
+                    <span>Synthesize Testbed</span>
+                </button>
+
+                <div class="border-l border-gray-800 h-6 mx-1"></div>
+
+                <a href="/api/report/executive" target="_blank" class="flex items-center space-x-1.5 bg-gray-800 hover:bg-gray-700 text-gray-300 px-3 py-2 rounded-lg text-xs font-semibold border border-gray-700 transition">
+                    <i data-lucide="file-text" class="w-3.5 h-3.5 text-emerald-400"></i>
+                    <span>Executive Report</span>
+                </a>
+                <a href="/api/report/technical" target="_blank" class="flex items-center space-x-1.5 bg-gray-800 hover:bg-gray-700 text-gray-300 px-3 py-2 rounded-lg text-xs font-semibold border border-gray-700 transition">
+                    <i data-lucide="code" class="w-3.5 h-3.5 text-sky-400"></i>
+                    <span>Technical Report</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <main class="max-w-7xl mx-auto px-6 py-6 space-y-6">
+
+        <!-- Benchmark Scenario Quick-Launcher Bar -->
+        <div class="bg-[#111827] border border-gray-800 rounded-xl p-4 flex items-center justify-between shadow-lg">
+            <div class="flex items-center space-x-3">
+                <i data-lucide="database" class="w-5 h-5 text-sky-400"></i>
+                <span class="text-sm font-semibold text-gray-300">Quick Testbed Scenarios:</span>
+            </div>
+            <div class="flex flex-wrap gap-2" id="scenariosContainer">
+                <button onclick="runScenario('scenario_1_enterprise_secure.pcap')" class="px-3 py-1.5 bg-emerald-500/10 hover:bg-emerald-500/20 border border-emerald-500/30 text-emerald-400 rounded-lg text-xs font-medium transition flex items-center space-x-1">
+                    <span>1. Secure Enterprise (AES-256-GCM / DH19)</span>
+                </button>
+                <button onclick="runScenario('scenario_2_legacy_vulnerable.pcap')" class="px-3 py-1.5 bg-red-500/10 hover:bg-red-500/20 border border-red-500/30 text-red-400 rounded-lg text-xs font-medium transition flex items-center space-x-1">
+                    <span>2. Legacy Vulnerable (3DES / MD5 / DH1)</span>
+                </button>
+                <button onclick="runScenario('scenario_3_transport_voip.pcap')" class="px-3 py-1.5 bg-sky-500/10 hover:bg-sky-500/20 border border-sky-500/30 text-sky-400 rounded-lg text-xs font-medium transition flex items-center space-x-1">
+                    <span>3. Transport Mode (VoIP Audio)</span>
+                </button>
+                <button onclick="runScenario('scenario_4_whatsapp_tunnel.pcap')" class="px-3 py-1.5 bg-purple-500/10 hover:bg-purple-500/20 border border-purple-500/30 text-purple-400 rounded-lg text-xs font-medium transition flex items-center space-x-1">
+                    <span>4. Tunnel Mode (WhatsApp Chat)</span>
+                </button>
+                <button onclick="runScenario('scenario_5_broken_dh_video.pcap')" class="px-3 py-1.5 bg-amber-500/10 hover:bg-amber-500/20 border border-amber-500/30 text-amber-400 rounded-lg text-xs font-medium transition flex items-center space-x-1">
+                    <span>5. Broken DH1 (Video Streaming)</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Loading State Indicator -->
+        <div id="loadingIndicator" class="hidden bg-sky-950/40 border border-sky-800 rounded-xl p-6 text-center">
+            <div class="inline-block animate-spin rounded-full h-8 w-8 border-4 border-sky-500 border-t-transparent mb-3"></div>
+            <p class="text-sm font-medium text-sky-300">Extracting protocol headers, executing AI flow classification & evaluating cryptographic compliance...</p>
+        </div>
+
+        <!-- Primary KPI Metrics Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+            
+            <!-- Overall Security Score Card -->
+            <div class="bg-[#111827] border border-gray-800 rounded-xl p-5 relative overflow-hidden">
+                <div class="flex justify-between items-start">
+                    <span class="text-xs uppercase tracking-wider font-semibold text-gray-400">Security Score</span>
+                    <span id="riskBadge" class="text-xs font-bold px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-400 border border-emerald-500/30">SECURE</span>
+                </div>
+                <div class="mt-3 flex items-baseline space-x-2">
+                    <span id="kpiScore" class="text-4xl font-extrabold text-white">--</span>
+                    <span class="text-sm text-gray-400 font-semibold">/ 100</span>
+                </div>
+                <div class="w-full bg-gray-800 h-2 rounded-full mt-3 overflow-hidden">
+                    <div id="kpiScoreBar" class="bg-emerald-500 h-full transition-all duration-700" style="width: 0%"></div>
+                </div>
+                <p id="kpiVulnCount" class="text-xs text-gray-400 mt-2">NIST SP 800-77 Evaluation</p>
+            </div>
+
+            <!-- Operating Mode & IKE Version -->
+            <div class="bg-[#111827] border border-gray-800 rounded-xl p-5">
+                <div class="flex justify-between items-start">
+                    <span class="text-xs uppercase tracking-wider font-semibold text-gray-400">Mode & Protocol</span>
+                    <i data-lucide="network" class="w-4 h-4 text-sky-400"></i>
+                </div>
+                <div class="mt-3">
+                    <div id="kpiMode" class="text-2xl font-bold text-white">-- Mode</div>
+                    <div id="kpiIKE" class="text-xs font-medium text-sky-400 mt-1">IKE Version: --</div>
+                </div>
+                <div class="mt-3 text-xs text-gray-400 flex items-center space-x-1">
+                    <span id="kpiPFS" class="font-semibold text-gray-300">PFS: --</span>
+                    <span>•</span>
+                    <span id="kpiNAT" class="text-gray-400">NAT-T: --</span>
+                </div>
+            </div>
+
+            <!-- Cryptographic Ciphers -->
+            <div class="bg-[#111827] border border-gray-800 rounded-xl p-5">
+                <div class="flex justify-between items-start">
+                    <span class="text-xs uppercase tracking-wider font-semibold text-gray-400">Negotiated Ciphers</span>
+                    <i data-lucide="key" class="w-4 h-4 text-amber-400"></i>
+                </div>
+                <div class="mt-3">
+                    <div id="kpiCipher" class="text-lg font-bold text-white truncate">--</div>
+                    <div id="kpiIntegrity" class="text-xs text-gray-400 truncate mt-1">Integrity: --</div>
+                </div>
+                <div class="mt-3 text-xs text-gray-400 truncate">
+                    <span class="font-semibold text-gray-300">DH Group: </span>
+                    <span id="kpiDH">--</span>
+                </div>
+            </div>
+
+            <!-- AI Encrypted Traffic Classification -->
+            <div class="bg-[#111827] border border-gray-800 rounded-xl p-5 relative">
+                <div class="flex justify-between items-start">
+                    <span class="text-xs uppercase tracking-wider font-semibold text-gray-400">AI Encrypted Payload</span>
+                    <span class="text-xs font-bold px-2 py-0.5 rounded bg-sky-500/20 text-sky-400 border border-sky-500/30">ML Infer</span>
+                </div>
+                <div class="mt-3">
+                    <div id="kpiTrafficClass" class="text-2xl font-bold text-sky-400">--</div>
+                    <div id="kpiTrafficConf" class="text-xs text-gray-400 mt-1">Confidence: --</div>
+                </div>
+                <div class="w-full bg-gray-800 h-2 rounded-full mt-3 overflow-hidden">
+                    <div id="kpiConfBar" class="bg-sky-500 h-full transition-all duration-700" style="width: 0%"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Navigation Tabs for Detailed Inspection -->
+        <div class="border-b border-gray-800 flex space-x-6">
+            <button onclick="switchTab('threatsTab')" id="tabBtnThreats" class="pb-3 text-sm font-semibold border-b-2 border-sky-500 text-sky-400 transition flex items-center space-x-2">
+                <i data-lucide="alert-triangle" class="w-4 h-4"></i>
+                <span>Threat Matrix & Compliance</span>
+                <span id="threatCountBadge" class="ml-1 px-1.5 py-0.5 rounded-full text-xs bg-red-500/20 text-red-400 font-bold">0</span>
+            </button>
+            <button onclick="switchTab('aiTab')" id="tabBtnAI" class="pb-3 text-sm font-semibold border-b-2 border-transparent text-gray-400 hover:text-gray-200 transition flex items-center space-x-2">
+                <i data-lucide="cpu" class="w-4 h-4"></i>
+                <span>AI Traffic Inference & Flow Telemetry</span>
+            </button>
+            <button onclick="switchTab('packetsTab')" id="tabBtnPackets" class="pb-3 text-sm font-semibold border-b-2 border-transparent text-gray-400 hover:text-gray-200 transition flex items-center space-x-2">
+                <i data-lucide="layers" class="w-4 h-4"></i>
+                <span>Packet Dissector & Hex View</span>
+            </button>
+            <button onclick="switchTab('saTab')" id="tabBtnSA" class="pb-3 text-sm font-semibold border-b-2 border-transparent text-gray-400 hover:text-gray-200 transition flex items-center space-x-2">
+                <i data-lucide="lock" class="w-4 h-4"></i>
+                <span>SA Security Topology</span>
+            </button>
+        </div>
+
+        <!-- Tab 1: Threat Matrix & Compliance -->
+        <div id="threatsTab" class="space-y-6">
+            <!-- Regulatory Compliance Cards -->
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-4" id="complianceGrid">
+                <div class="bg-[#111827] border border-gray-800 rounded-xl p-4 flex items-center space-x-3">
+                    <div id="compIconNIST" class="h-9 w-9 rounded-lg bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400">
+                        <i data-lucide="check-circle" class="w-5 h-5"></i>
+                    </div>
+                    <div>
+                        <div class="text-xs text-gray-400 font-medium">NIST SP 800-77 Rev. 1</div>
+                        <div id="compTextNIST" class="text-sm font-bold text-emerald-400">COMPLIANT</div>
+                    </div>
+                </div>
+
+                <div class="bg-[#111827] border border-gray-800 rounded-xl p-4 flex items-center space-x-3">
+                    <div id="compIconRFC" class="h-9 w-9 rounded-lg bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400">
+                        <i data-lucide="check-circle" class="w-5 h-5"></i>
+                    </div>
+                    <div>
+                        <div class="text-xs text-gray-400 font-medium">RFC 8221 (ESP Cryptography)</div>
+                        <div id="compTextRFC" class="text-sm font-bold text-emerald-400">COMPLIANT</div>
+                    </div>
+                </div>
+
+                <div class="bg-[#111827] border border-gray-800 rounded-xl p-4 flex items-center space-x-3">
+                    <div id="compIconIKE2" class="h-9 w-9 rounded-lg bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400">
+                        <i data-lucide="check-circle" class="w-5 h-5"></i>
+                    </div>
+                    <div>
+                        <div class="text-xs text-gray-400 font-medium">RFC 8247 (IKEv2 Standard)</div>
+                        <div id="compTextIKE2" class="text-sm font-bold text-emerald-400">COMPLIANT</div>
+                    </div>
+                </div>
+
+                <div class="bg-[#111827] border border-gray-800 rounded-xl p-4 flex items-center space-x-3">
+                    <div id="compIconCNSA" class="h-9 w-9 rounded-lg bg-gray-800 border border-gray-700 flex items-center justify-center text-gray-400">
+                        <i data-lucide="shield" class="w-5 h-5"></i>
+                    </div>
+                    <div>
+                        <div class="text-xs text-gray-400 font-medium">NSA CNSA Defense Suite</div>
+                        <div id="compTextCNSA" class="text-sm font-bold text-gray-400">OPTIONAL / NOT MET</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Threat Matrix Table -->
+            <div class="bg-[#111827] border border-gray-800 rounded-xl overflow-hidden shadow-xl">
+                <div class="px-5 py-4 border-b border-gray-800 flex justify-between items-center">
+                    <h3 class="text-sm font-bold text-white uppercase tracking-wider">Identified Security Risks & Misconfigurations</h3>
+                    <span class="text-xs text-gray-400">Mapped against NIST & MITRE Vulnerability Frameworks</span>
+                </div>
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left text-sm">
+                        <thead class="bg-[#0c1220] text-gray-400 text-xs uppercase tracking-wider border-b border-gray-800">
+                            <tr>
+                                <th class="px-5 py-3">Severity</th>
+                                <th class="px-5 py-3">Threat & Vulnerability</th>
+                                <th class="px-5 py-3">Category</th>
+                                <th class="px-5 py-3">CVSS</th>
+                                <th class="px-5 py-3">Affected Component</th>
+                                <th class="px-5 py-3">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="threatTableBody" class="divide-y divide-gray-800 text-gray-300">
+                            <tr>
+                                <td colspan="6" class="px-5 py-8 text-center text-gray-400">Select a scenario or upload a PCAP file to initiate assessment.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Hardening Directives -->
+            <div class="bg-[#111827] border border-gray-800 rounded-xl p-5">
+                <h4 class="text-sm font-bold text-white uppercase tracking-wider mb-3">Executive Hardening Directives</h4>
+                <ul id="hardeningList" class="space-y-2 text-sm text-gray-300">
+                    <li class="flex items-start space-x-2">
+                        <i data-lucide="chevron-right" class="w-4 h-4 text-sky-400 mt-0.5"></i>
+                        <span>Awaiting scan execution.</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Tab 2: AI Traffic Inference & Flow Telemetry -->
+        <div id="aiTab" class="hidden space-y-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- AI Classification Probabilities -->
+                <div class="bg-[#111827] border border-gray-800 rounded-xl p-5">
+                    <h4 class="text-sm font-bold text-white uppercase tracking-wider mb-4 flex items-center justify-between">
+                        <span>Payload Class Probabilities</span>
+                        <span id="aiModelBadge" class="text-xs text-sky-400 font-semibold">Trained Classifier</span>
+                    </h4>
+                    <div id="probBarsContainer" class="space-y-3">
+                        <!-- Populated by JS -->
+                    </div>
+                </div>
+
+                <!-- Feature Importance Explainer -->
+                <div class="bg-[#111827] border border-gray-800 rounded-xl p-5">
+                    <h4 class="text-sm font-bold text-white uppercase tracking-wider mb-4">Top Influential Flow Features (Explainability)</h4>
+                    <div id="topFeaturesContainer" class="space-y-2 text-sm">
+                        <!-- Populated by JS -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Charts Section -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="bg-[#111827] border border-gray-800 rounded-xl p-5">
+                    <h4 class="text-sm font-bold text-white uppercase tracking-wider mb-3">Packet Length Distribution</h4>
+                    <div class="h-64">
+                        <canvas id="pktLengthChart"></canvas>
+                    </div>
+                </div>
+                <div class="bg-[#111827] border border-gray-800 rounded-xl p-5">
+                    <h4 class="text-sm font-bold text-white uppercase tracking-wider mb-3">Flow Inter-Arrival Times (IAT)</h4>
+                    <div class="h-64">
+                        <canvas id="iatChart"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Flow Telemetry Metrics Table -->
+            <div class="bg-[#111827] border border-gray-800 rounded-xl p-5">
+                <h4 class="text-sm font-bold text-white uppercase tracking-wider mb-3">Cryptographic & Flow Telemetry Metrics</h4>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm" id="flowMetricsGrid">
+                    <!-- Populated by JS -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Tab 3: Packet Dissector & Hex View -->
+        <div id="packetsTab" class="hidden space-y-6">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Packet List -->
+                <div class="bg-[#111827] border border-gray-800 rounded-xl p-4 md:col-span-1 h-[520px] flex flex-col">
+                    <h4 class="text-xs font-bold text-gray-400 uppercase tracking-wider mb-2">Dissected Packets (<span id="packetListCount">0</span>)</h4>
+                    <div id="packetList" class="flex-1 overflow-y-auto space-y-1 pr-1 custom-scroll text-xs">
+                        <!-- Packets items -->
+                    </div>
+                </div>
+
+                <!-- Packet Details & Hex -->
+                <div class="bg-[#111827] border border-gray-800 rounded-xl p-5 md:col-span-2 h-[520px] flex flex-col overflow-hidden">
+                    <h4 class="text-xs font-bold text-gray-400 uppercase tracking-wider mb-3">Protocol Dissection Tree & Hex Viewer</h4>
+                    <div class="flex-1 overflow-y-auto custom-scroll space-y-4 pr-2">
+                        <div id="packetDetailContent" class="space-y-3 text-xs font-mono bg-[#090d16] p-4 rounded-lg border border-gray-800">
+                            <span class="text-gray-400">Select any packet from the left list to inspect protocol headers and raw hex dump.</span>
+                        </div>
+                        <div>
+                            <h5 class="text-xs font-bold text-gray-400 uppercase tracking-wider mb-2">Payload Hex Preview</h5>
+                            <pre id="packetHexPreview" class="text-xs font-mono bg-[#090d16] p-4 rounded-lg border border-gray-800 text-sky-400 overflow-x-auto">--</pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tab 4: SA Security Topology -->
+        <div id="saTab" class="hidden space-y-6">
+            <div class="bg-[#111827] border border-gray-800 rounded-xl p-5">
+                <h4 class="text-sm font-bold text-white uppercase tracking-wider mb-4">Security Association (SA) Negotiation Tree</h4>
+                <div id="saProposalsContainer" class="space-y-4">
+                    <!-- Populated by JS -->
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Custom Testbed Generator Modal -->
+    <div id="customModal" class="hidden fixed inset-0 z-50 bg-black/70 backdrop-blur-sm flex items-center justify-center p-4">
+        <div class="bg-[#111827] border border-gray-800 rounded-2xl w-full max-w-xl p-6 shadow-2xl space-y-4">
+            <div class="flex justify-between items-center border-b border-gray-800 pb-3">
+                <h3 class="text-base font-bold text-white flex items-center space-x-2">
+                    <i data-lucide="sliders" class="w-5 h-5 text-sky-400"></i>
+                    <span>Generate Custom IPsec VPN Testbed</span>
+                </h3>
+                <button onclick="closeCustomModal()" class="text-gray-400 hover:text-white"><i data-lucide="x" class="w-5 h-5"></i></button>
+            </div>
+
+            <form id="customTestbedForm" onsubmit="submitCustomTestbed(event)" class="space-y-3 text-sm">
+                <div>
+                    <label class="block text-xs font-semibold text-gray-400 mb-1">Scenario Identifier</label>
+                    <input type="text" name="scenario_name" value="lab_custom_scenario" class="w-full bg-gray-900 border border-gray-700 rounded-lg px-3 py-2 text-white focus:outline-none focus:border-sky-500">
+                </div>
+
+                <div class="grid grid-cols-2 gap-3">
+                    <div>
+                        <label class="block text-xs font-semibold text-gray-400 mb-1">IKE Protocol</label>
+                        <select name="ike_version" class="w-full bg-gray-900 border border-gray-700 rounded-lg px-3 py-2 text-white">
+                            <option value="2">IKEv2 (Modern RFC 7296)</option>
+                            <option value="1">IKEv1 (Legacy RFC 2409)</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-gray-400 mb-1">Operating Mode</label>
+                        <select name="mode" class="w-full bg-gray-900 border border-gray-700 rounded-lg px-3 py-2 text-white">
+                            <option value="Tunnel">Tunnel Mode (Gateway-to-Gateway)</option>
+                            <option value="Transport">Transport Mode (Host-to-Host)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-2 gap-3">
+                    <div>
+                        <label class="block text-xs font-semibold text-gray-400 mb-1">Cipher Suite</label>
+                        <select name="cipher" class="w-full bg-gray-900 border border-gray-700 rounded-lg px-3 py-2 text-white">
+                            <option value="AES-256-GCM">AES-256-GCM (NIST / CNSA)</option>
+                            <option value="AES-128-GCM">AES-128-GCM</option>
+                            <option value="AES-256-CBC">AES-256-CBC</option>
+                            <option value="AES-128-CBC">AES-128-CBC</option>
+                            <option value="3DES-CBC">3DES-CBC (Sweet32 Vulnerable)</option>
+                            <option value="Blowfish-CBC">Blowfish-CBC (Legacy)</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-gray-400 mb-1">Integrity / Hash</label>
+                        <select name="integrity" class="w-full bg-gray-900 border border-gray-700 rounded-lg px-3 py-2 text-white">
+                            <option value="HMAC-SHA256">HMAC-SHA256</option>
+                            <option value="HMAC-SHA512">HMAC-SHA512</option>
+                            <option value="HMAC-SHA1">HMAC-SHA1 (Weak)</option>
+                            <option value="HMAC-MD5">HMAC-MD5 (Broken)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-2 gap-3">
+                    <div>
+                        <label class="block text-xs font-semibold text-gray-400 mb-1">Diffie-Hellman Group</label>
+                        <select name="dh_group" class="w-full bg-gray-900 border border-gray-700 rounded-lg px-3 py-2 text-white">
+                            <option value="19">Group 19 (256-bit Random ECP)</option>
+                            <option value="20">Group 20 (384-bit ECP / CNSA)</option>
+                            <option value="14">Group 14 (2048-bit MODP)</option>
+                            <option value="5">Group 5 (1536-bit MODP / Legacy)</option>
+                            <option value="2">Group 2 (1024-bit MODP / Weak)</option>
+                            <option value="1">Group 1 (768-bit MODP / Broken)</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-gray-400 mb-1">Encrypted Traffic Profile</label>
+                        <select name="traffic_type" class="w-full bg-gray-900 border border-gray-700 rounded-lg px-3 py-2 text-white">
+                            <option value="VoIP">VoIP (RTP Audio Streams)</option>
+                            <option value="WhatsApp">WhatsApp (Chat Bursts & Pings)</option>
+                            <option value="Web">Web Browsing (Interactive HTTP/S)</option>
+                            <option value="Email">Email (SMTP/IMAP Body Transfer)</option>
+                            <option value="Video">Video Streaming (Continuous MTU)</option>
+                            <option value="ICMP">ICMP (Echo Diagnostic)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-2 gap-3 pt-1">
+                    <div class="flex items-center space-x-2">
+                        <input type="checkbox" name="pfs_enabled" id="pfsCheck" checked class="rounded bg-gray-900 border-gray-700 text-sky-500 focus:ring-0">
+                        <label for="pfsCheck" class="text-xs text-gray-300">Enable Perfect Forward Secrecy (PFS)</label>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-gray-400 mb-1">Packet Count</label>
+                        <input type="number" name="packet_count" value="120" min="20" max="1000" class="w-full bg-gray-900 border border-gray-700 rounded-lg px-3 py-1.5 text-white">
+                    </div>
+                </div>
+
+                <div class="pt-3 border-t border-gray-800 flex justify-end space-x-3">
+                    <button type="button" onclick="closeCustomModal()" class="px-4 py-2 bg-gray-800 hover:bg-gray-700 text-gray-300 rounded-lg text-xs font-medium">Cancel</button>
+                    <button type="submit" class="px-4 py-2 bg-sky-600 hover:bg-sky-500 text-white rounded-lg text-xs font-semibold shadow-lg shadow-sky-600/30">Synthesize & Inspect</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Application Logic & Charts -->
+    <script>
+        let currentAnalysis = null;
+        let pktChartInstance = null;
+        let iatChartInstance = null;
+
+        document.addEventListener("DOMContentLoaded", () => {
+            lucide.createIcons();
+            // Automatically launch scenario 1 on startup
+            runScenario('scenario_1_enterprise_secure.pcap');
+        });
+
+        function switchTab(tabId) {
+            ['threatsTab', 'aiTab', 'packetsTab', 'saTab'].forEach(id => {
+                document.getElementById(id).classList.add('hidden');
+            });
+            document.getElementById(tabId).classList.remove('hidden');
+
+            ['tabBtnThreats', 'tabBtnAI', 'tabBtnPackets', 'tabBtnSA'].forEach(id => {
+                const btn = document.getElementById(id);
+                btn.classList.remove('border-sky-500', 'text-sky-400');
+                btn.classList.add('border-transparent', 'text-gray-400');
+            });
+
+            const activeBtnMap = {
+                threatsTab: 'tabBtnThreats',
+                aiTab: 'tabBtnAI',
+                packetsTab: 'tabBtnPackets',
+                saTab: 'tabBtnSA'
+            };
+            const activeBtn = document.getElementById(activeBtnMap[tabId]);
+            activeBtn.classList.remove('border-transparent', 'text-gray-400');
+            activeBtn.classList.add('border-sky-500', 'text-sky-400');
+
+            if (tabId === 'aiTab' && currentAnalysis) {
+                renderCharts(currentAnalysis);
+            }
+        }
+
+        async function runScenario(scenarioName) {
+            showLoading(true);
+            try {
+                const formData = new FormData();
+                formData.append('scenario_name', scenarioName);
+                const resp = await fetch('/api/scenarios/run', { method: 'POST', body: formData });
+                if (!resp.ok) throw new Error('Analysis failed');
+                const data = await resp.json();
+                renderAnalysis(data);
+            } catch (err) {
+                alert('Failed to analyze scenario: ' + err.message);
+            } finally {
+                showLoading(false);
+            }
+        }
+
+        async function uploadPCAP(file) {
+            if (!file) return;
+            showLoading(true);
+            try {
+                const formData = new FormData();
+                formData.append('file', file);
+                const resp = await fetch('/api/analyze', { method: 'POST', body: formData });
+                if (!resp.ok) throw new Error('Upload analysis failed');
+                const data = await resp.json();
+                renderAnalysis(data);
+            } catch (err) {
+                alert('Failed to analyze uploaded PCAP: ' + err.message);
+            } finally {
+                showLoading(false);
+            }
+        }
+
+        async function submitCustomTestbed(e) {
+            e.preventDefault();
+            closeCustomModal();
+            showLoading(true);
+            try {
+                const form = document.getElementById('customTestbedForm');
+                const formData = new FormData(form);
+                formData.set('pfs_enabled', document.getElementById('pfsCheck').checked);
+                const resp = await fetch('/api/testbed/generate', { method: 'POST', body: formData });
+                if (!resp.ok) throw new Error('Testbed generation failed');
+                const data = await resp.json();
+                renderAnalysis(data);
+            } catch (err) {
+                alert('Generation failed: ' + err.message);
+            } finally {
+                showLoading(false);
+            }
+        }
+
+        function showLoading(show) {
+            document.getElementById('loadingIndicator').classList.toggle('hidden', !show);
+        }
+
+        function openCustomModal() { document.getElementById('customModal').classList.remove('hidden'); }
+        function closeCustomModal() { document.getElementById('customModal').classList.add('hidden'); }
+
+        function renderAnalysis(data) {
+            currentAnalysis = data;
+            const sec = data.security_assessment || {};
+            const ike = data.ike_negotiation || {};
+            const esp = data.esp_summary || {};
+            const ai = data.ai_classification || {};
+            const flow = data.flow_features || {};
+
+            // 1. KPI Cards
+            const score = sec.overall_score || 0;
+            document.getElementById('kpiScore').innerText = score;
+            const scoreBar = document.getElementById('kpiScoreBar');
+            scoreBar.style.width = score + '%';
+            
+            const riskBadge = document.getElementById('riskBadge');
+            riskBadge.innerText = sec.risk_level || 'UNKNOWN';
+            if (score >= 80) {
+                riskBadge.className = 'text-xs font-bold px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-400 border border-emerald-500/30';
+                scoreBar.className = 'bg-emerald-500 h-full transition-all duration-700';
+            } else if (score >= 50) {
+                riskBadge.className = 'text-xs font-bold px-2 py-0.5 rounded bg-amber-500/20 text-amber-400 border border-amber-500/30';
+                scoreBar.className = 'bg-amber-500 h-full transition-all duration-700';
+            } else {
+                riskBadge.className = 'text-xs font-bold px-2 py-0.5 rounded bg-red-500/20 text-red-400 border border-red-500/30';
+                scoreBar.className = 'bg-red-500 h-full transition-all duration-700';
+            }
+
+            document.getElementById('kpiVulnCount').innerText = `${sec.total_vulnerabilities || 0} Risk Findings Detected`;
+            document.getElementById('threatCountBadge').innerText = sec.total_vulnerabilities || 0;
+
+            document.getElementById('kpiMode').innerText = (esp.inferred_mode || 'Tunnel') + ' Mode';
+            document.getElementById('kpiIKE').innerText = 'IKE Protocol: ' + (ike.ike_version || 'Unknown');
+            document.getElementById('kpiPFS').innerText = 'PFS: ' + (ike.has_pfs ? 'ENABLED' : 'DISABLED');
+            document.getElementById('kpiNAT').innerText = 'NAT-T: ' + (ike.nat_traversal_detected ? 'ACTIVE' : 'NONE');
+
+            const ciphers = (ike.encryption_algorithms || []).join(', ') || 'N/A';
+            document.getElementById('kpiCipher').innerText = ciphers;
+            document.getElementById('kpiIntegrity').innerText = 'Integrity: ' + ((ike.integrity_algorithms || []).join(', ') || 'AEAD / Embedded');
+            document.getElementById('kpiDH').innerText = (ike.dh_groups || []).join(', ') || 'Not Extracted';
+
+            document.getElementById('kpiTrafficClass').innerText = ai.predicted_class || 'Unknown';
+            const conf = Math.round((ai.confidence_score || 0) * 100);
+            document.getElementById('kpiTrafficConf').innerText = `Confidence: ${conf}% (${ai.model_version || 'ML'})`;
+            document.getElementById('kpiConfBar').style.width = conf + '%';
+
+            // 2. Compliance Cards
+            const comp = sec.compliance_status || {};
+            setComplianceCard('compIconNIST', 'compTextNIST', comp.NIST_SP_800_77_Rev1);
+            setComplianceCard('compIconRFC', 'compTextRFC', comp.RFC_8221_ESP);
+            setComplianceCard('compIconIKE2', 'compTextIKE2', comp.RFC_8247_IKEv2);
+            setComplianceCard('compIconCNSA', 'compTextCNSA', comp.CNSA_Suite, 'CNSA Suite');
+
+            // 3. Threat Table
+            const tbody = document.getElementById('threatTableBody');
+            tbody.innerHTML = '';
+            const threats = sec.threat_matrix || [];
+            if (threats.length === 0) {
+                tbody.innerHTML = `<tr><td colspan="6" class="px-5 py-6 text-center text-emerald-400 font-semibold"><i data-lucide="check-circle" class="w-5 h-5 inline mr-1"></i>No security vulnerabilities detected. IPsec configuration is fully hardened.</td></tr>`;
+            } else {
+                threats.forEach(t => {
+                    const sevClass = t.severity === 'CRITICAL' ? 'bg-red-500/20 text-red-400 border border-red-500/30' :
+                                    (t.severity === 'HIGH' ? 'bg-orange-500/20 text-orange-400 border border-orange-500/30' : 'bg-amber-500/20 text-amber-400 border border-amber-500/30');
+                    tbody.innerHTML += `
+                        <tr class="hover:bg-gray-800/40 transition">
+                            <td class="px-5 py-3.5"><span class="px-2 py-0.5 rounded text-xs font-bold ${sevClass}">${t.severity}</span></td>
+                            <td class="px-5 py-3.5 font-medium text-white">${t.title}<div class="text-xs text-gray-400 mt-0.5">${t.description}</div></td>
+                            <td class="px-5 py-3.5 text-xs font-semibold text-gray-300">${t.category}</td>
+                            <td class="px-5 py-3.5 font-bold text-white">${t.cvss}</td>
+                            <td class="px-5 py-3.5 text-xs text-gray-400 font-mono">${t.affected_component}</td>
+                            <td class="px-5 py-3.5"><button onclick="showRemediation('${encodeURIComponent(t.remediation)}')" class="text-xs text-sky-400 hover:text-sky-300 font-semibold underline">Remedy</button></td>
+                        </tr>
+                    `;
+                });
+            }
+
+            // 4. Hardening List
+            const hardList = document.getElementById('hardeningList');
+            hardList.innerHTML = '';
+            (sec.summary_recommendations || []).forEach(r => {
+                hardList.innerHTML += `<li class="flex items-start space-x-2"><i data-lucide="shield-alert" class="w-4 h-4 text-sky-400 mt-0.5 shrink-0"></i><span>${r}</span></li>`;
+            });
+
+            // 5. AI Probability Bars
+            const probContainer = document.getElementById('probBarsContainer');
+            probContainer.innerHTML = '';
+            for (const [cls, prob] of Object.entries(ai.probabilities || {})) {
+                const pct = Math.round(prob * 100);
+                probContainer.innerHTML += `
+                    <div>
+                        <div class="flex justify-between text-xs font-semibold mb-1">
+                            <span class="${cls === ai.predicted_class ? 'text-sky-400 font-bold' : 'text-gray-400'}">${cls}</span>
+                            <span class="text-gray-300">${pct}%</span>
+                        </div>
+                        <div class="w-full bg-gray-800 h-2 rounded-full overflow-hidden">
+                            <div class="${cls === ai.predicted_class ? 'bg-sky-500' : 'bg-gray-600'} h-full transition-all duration-500" style="width: ${pct}%"></div>
+                        </div>
+                    </div>
+                `;
+            }
+
+            // 6. Top Features
+            const featContainer = document.getElementById('topFeaturesContainer');
+            featContainer.innerHTML = '';
+            (ai.top_features || []).forEach(f => {
+                featContainer.innerHTML += `
+                    <div class="bg-gray-900 border border-gray-800 p-2.5 rounded-lg flex justify-between items-center">
+                        <span class="font-mono text-gray-300">${f.feature}</span>
+                        <span class="text-xs font-bold text-sky-400">Val: ${f.value} (Weight: ${f.importance_weight})</span>
+                    </div>
+                `;
+            });
+
+            // 7. Flow Metrics Grid
+            const flowGrid = document.getElementById('flowMetricsGrid');
+            flowGrid.innerHTML = `
+                <div class="bg-gray-900 p-3 rounded-lg border border-gray-800"><div class="text-xs text-gray-400">Mean Packet Length</div><div class="text-base font-bold text-white">${flow.len_mean || 0} B</div></div>
+                <div class="bg-gray-900 p-3 rounded-lg border border-gray-800"><div class="text-xs text-gray-400">Packet Length Std</div><div class="text-base font-bold text-white">${flow.len_std || 0} B</div></div>
+                <div class="bg-gray-900 p-3 rounded-lg border border-gray-800"><div class="text-xs text-gray-400">Mean Inter-Arrival</div><div class="text-base font-bold text-white">${Math.round((flow.iat_mean || 0)*1000)} ms</div></div>
+                <div class="bg-gray-900 p-3 rounded-lg border border-gray-800"><div class="text-xs text-gray-400">Jitter (Avg Delta)</div><div class="text-base font-bold text-white">${Math.round((flow.jitter || 0)*1000)} ms</div></div>
+                <div class="bg-gray-900 p-3 rounded-lg border border-gray-800"><div class="text-xs text-gray-400">Captured Volume</div><div class="text-base font-bold text-white">${flow.byte_count || 0} B</div></div>
+                <div class="bg-gray-900 p-3 rounded-lg border border-gray-800"><div class="text-xs text-gray-400">Packet Count</div><div class="text-base font-bold text-white">${flow.pkt_count || 0}</div></div>
+                <div class="bg-gray-900 p-3 rounded-lg border border-gray-800"><div class="text-xs text-gray-400">Avg Burst Size</div><div class="text-base font-bold text-white">${flow.avg_burst_size || 1} pkts</div></div>
+                <div class="bg-gray-900 p-3 rounded-lg border border-gray-800"><div class="text-xs text-gray-400">Payload Entropy</div><div class="text-base font-bold text-white">${esp.average_entropy || 0} bits/B</div></div>
+            `;
+
+            // 8. Dissected Packets List
+            const pktList = document.getElementById('packetList');
+            pktList.innerHTML = '';
+            const previewPkts = data.packets_preview || [];
+            document.getElementById('packetListCount').innerText = previewPkts.length;
+            previewPkts.forEach((p, idx) => {
+                const protoBadge = p.protocol.includes('IKE') ? 'text-sky-400 bg-sky-500/10' : 'text-emerald-400 bg-emerald-500/10';
+                pktList.innerHTML += `
+                    <div onclick="selectPacket(${idx})" id="pktRow_${idx}" class="p-2 rounded bg-gray-900 hover:bg-gray-800 cursor-pointer border border-transparent hover:border-gray-700 transition flex items-center justify-between">
+                        <div>
+                            <span class="font-mono text-gray-400">#${p.index}</span>
+                            <span class="font-semibold text-gray-200 ml-1.5">${p.src_ip} &rarr; ${p.dst_ip}</span>
+                        </div>
+                        <span class="px-1.5 py-0.5 rounded text-[10px] font-bold ${protoBadge}">${p.protocol}</span>
+                    </div>
+                `;
+            });
+
+            if (previewPkts.length > 0) {
+                selectPacket(0);
+            }
+
+            // 9. SA Proposals Container
+            const saContainer = document.getElementById('saProposalsContainer');
+            saContainer.innerHTML = '';
+            const proposals = ike.proposals || [];
+            if (proposals.length === 0) {
+                saContainer.innerHTML = `<div class="text-gray-400 text-sm">No IKE SA proposals captured or tunnel established without rekeying in this trace.</div>`;
+            } else {
+                proposals.forEach((pr, i) => {
+                    let tfRows = '';
+                    (pr.transforms || []).forEach(tf => {
+                        tfRows += `
+                            <tr class="border-b border-gray-800">
+                                <td class="py-2 text-gray-300 font-mono">${tf.type_name || tf.transform_number}</td>
+                                <td class="py-2 text-white font-semibold">${tf.encryption || tf.integrity || tf.dh_group || tf.esn || 'Attribute'}</td>
+                                <td class="py-2 text-gray-400 font-mono">${JSON.stringify(tf.attributes || {})}</td>
+                            </tr>
+                        `;
+                    });
+                    saContainer.innerHTML += `
+                        <div class="bg-gray-900 border border-gray-800 rounded-lg p-4">
+                            <h5 class="text-xs font-bold uppercase tracking-wider text-sky-400 mb-2">Proposal #${pr.proposal_number} - Protocol: ${pr.protocol} (SPI: ${pr.spi || '0x0'})</h5>
+                            <table class="w-full text-left text-xs">
+                                <thead class="text-gray-400 border-b border-gray-800">
+                                    <tr><th class="py-1">Transform Type</th><th class="py-1">Configured Algorithm</th><th class="py-1">Parameters</th></tr>
+                                </thead>
+                                <tbody>${tfRows}</tbody>
+                            </table>
+                        </div>
+                    `;
+                });
+            }
+
+            lucide.createIcons();
+            if (!document.getElementById('aiTab').classList.contains('hidden')) {
+                renderCharts(data);
+            }
+        }
+
+        function setComplianceCard(iconId, textId, status, label = 'NIST') {
+            const icon = document.getElementById(iconId);
+            const text = document.getElementById(textId);
+            if (status) {
+                icon.className = 'h-9 w-9 rounded-lg bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400';
+                text.className = 'text-sm font-bold text-emerald-400';
+                text.innerText = 'COMPLIANT';
+            } else {
+                icon.className = 'h-9 w-9 rounded-lg bg-red-500/10 border border-red-500/30 flex items-center justify-center text-red-400';
+                text.className = 'text-sm font-bold text-red-400';
+                text.innerText = 'NON-COMPLIANT';
+            }
+        }
+
+        function selectPacket(index) {
+            if (!currentAnalysis || !currentAnalysis.packets_preview) return;
+            const p = currentAnalysis.packets_preview[index];
+            if (!p) return;
+
+            // Highlight row
+            document.querySelectorAll('[id^="pktRow_"]').forEach(el => el.classList.remove('bg-sky-950/60', 'border-sky-500'));
+            const activeRow = document.getElementById(`pktRow_${index}`);
+            if (activeRow) activeRow.classList.add('bg-sky-950/60', 'border-sky-500');
+
+            const detailEl = document.getElementById('packetDetailContent');
+            detailEl.innerHTML = `
+                <div><span class="text-gray-400">Frame #:</span> <span class="text-white">${p.index}</span> (${p.length} bytes on wire)</div>
+                <div><span class="text-gray-400">Arrival Time:</span> <span class="text-white">${new Date(p.timestamp * 1000).toISOString()}</span></div>
+                <div><span class="text-gray-400">Network Layer:</span> <span class="text-sky-400">${p.layers.join(' &rarr; ')}</span></div>
+                <div><span class="text-gray-400">Source:</span> <span class="text-white">${p.src_ip}</span> | <span class="text-gray-400">Destination:</span> <span class="text-white">${p.dst_ip}</span></div>
+                <div class="pt-2 border-t border-gray-800"><span class="text-gray-400">Protocol Dissection Details:</span><pre class="text-emerald-400 mt-1">${JSON.stringify(p.details, null, 2)}</pre></div>
+            `;
+
+            document.getElementById('packetHexPreview').innerText = p.hex_preview ? formatHex(p.hex_preview) : 'No payload bytes available';
+        }
+
+        function formatHex(hexStr) {
+            let res = '';
+            for (let i = 0; i < hexStr.length; i += 32) {
+                const chunk = hexStr.slice(i, i + 32);
+                let spaced = '';
+                for (let j = 0; j < chunk.length; j += 2) {
+                    spaced += chunk.slice(j, j + 2) + ' ';
+                }
+                res += spaced.trim() + '\n';
+            }
+            return res.trim();
+        }
+
+        function renderCharts(data) {
+            const sizes = (data.esp_summary || {}).packet_sizes || [];
+            
+            // Length Histogram Chart
+            const bins = [0, 200, 500, 900, 1300, 1500];
+            const counts = [0, 0, 0, 0, 0];
+            sizes.forEach(s => {
+                if (s < 200) counts[0]++;
+                else if (s < 500) counts[1]++;
+                else if (s < 900) counts[2]++;
+                else if (s < 1300) counts[3]++;
+                else counts[4]++;
+            });
+
+            if (pktChartInstance) pktChartInstance.destroy();
+            const ctx1 = document.getElementById('pktLengthChart').getContext('2d');
+            pktChartInstance = new Chart(ctx1, {
+                type: 'bar',
+                data: {
+                    labels: ['<200B', '200-500B', '500-900B', '900-1300B', '1300-1500B'],
+                    datasets: [{
+                        label: 'Packet Count',
+                        data: counts,
+                        backgroundColor: '#0284c7',
+                        borderRadius: 4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: { legend: { display: false } },
+                    scales: {
+                        x: { grid: { color: '#1f2937' }, ticks: { color: '#9ca3af' } },
+                        y: { grid: { color: '#1f2937' }, ticks: { color: '#9ca3af' } }
+                    }
+                }
+            });
+
+            // IAT Chart
+            if (iatChartInstance) iatChartInstance.destroy();
+            const ctx2 = document.getElementById('iatChart').getContext('2d');
+            iatChartInstance = new Chart(ctx2, {
+                type: 'line',
+                data: {
+                    labels: sizes.slice(0, 40).map((_, i) => `#${i+1}`),
+                    datasets: [{
+                        label: 'Payload Size (Bytes)',
+                        data: sizes.slice(0, 40),
+                        borderColor: '#38bdf8',
+                        backgroundColor: 'rgba(56, 189, 248, 0.1)',
+                        fill: true,
+                        tension: 0.3
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: { legend: { display: false } },
+                    scales: {
+                        x: { grid: { color: '#1f2937' }, ticks: { color: '#9ca3af' } },
+                        y: { grid: { color: '#1f2937' }, ticks: { color: '#9ca3af' } }
+                    }
+                }
+            });
+        }
+
+        function showRemediation(remText) {
+            alert('Remediation Directive:\n\n' + decodeURIComponent(remText));
+        }
+    </script>
+</body>
+</html>

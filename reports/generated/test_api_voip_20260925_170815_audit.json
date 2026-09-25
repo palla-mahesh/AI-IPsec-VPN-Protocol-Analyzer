@@ -1,0 +1,264 @@
+{
+  "filename": "test_api_voip.pcap",
+  "packet_count": 52,
+  "ike_negotiation": {
+    "ike_version": "IKEv2.0",
+    "initiator_spi": "0xa59a690d37db8483",
+    "responder_spi": "0x0000000000000000",
+    "exchange_types": [
+      "IKE_SA_INIT"
+    ],
+    "is_aggressive_mode": false,
+    "is_main_mode": false,
+    "is_ikev2": true,
+    "has_pfs": true,
+    "nat_traversal_detected": false,
+    "proposals": [
+      {
+        "proposal_number": 1,
+        "protocol": "IKE",
+        "spi": "",
+        "transforms": [
+          {
+            "type_id": 1,
+            "type_name": "ENCR (Encryption)",
+            "transform_id": 7,
+            "attributes": {},
+            "encryption": "AES-CBC"
+          },
+          {
+            "type_id": 3,
+            "type_name": "INTEG (Integrity)",
+            "transform_id": 8,
+            "attributes": {},
+            "integrity": "HMAC-SHA256-128"
+          },
+          {
+            "type_id": 4,
+            "type_name": "D-H (Diffie-Hellman Group)",
+            "transform_id": 14,
+            "attributes": {},
+            "dh_group": "Group 14 (2048-bit MODP)",
+            "dh_group_id": 14
+          }
+        ]
+      },
+      {
+        "proposal_number": 1,
+        "protocol": "IKE",
+        "spi": "",
+        "transforms": [
+          {
+            "type_id": 1,
+            "type_name": "ENCR (Encryption)",
+            "transform_id": 7,
+            "attributes": {},
+            "encryption": "AES-CBC"
+          },
+          {
+            "type_id": 3,
+            "type_name": "INTEG (Integrity)",
+            "transform_id": 8,
+            "attributes": {},
+            "integrity": "HMAC-SHA256-128"
+          },
+          {
+            "type_id": 4,
+            "type_name": "D-H (Diffie-Hellman Group)",
+            "transform_id": 14,
+            "attributes": {},
+            "dh_group": "Group 14 (2048-bit MODP)",
+            "dh_group_id": 14
+          }
+        ]
+      }
+    ],
+    "encryption_algorithms": [
+      "AES-CBC"
+    ],
+    "integrity_algorithms": [
+      "HMAC-SHA256-128"
+    ],
+    "dh_groups": [
+      "Group 14 (2048-bit MODP)"
+    ],
+    "key_lifetimes": [],
+    "vendor_ids": [],
+    "warnings": []
+  },
+  "esp_summary": {
+    "spis": [
+      "0xca70a12b",
+      "0x5e48f099"
+    ],
+    "packet_count": 50,
+    "total_bytes": 8612,
+    "min_seq": 1,
+    "max_seq": 27,
+    "sequence_gaps": 0,
+    "replay_errors": 0,
+    "average_entropy": 0.0,
+    "inferred_mode": "Transport",
+    "mode_confidence": 0.75,
+    "mode_reasoning": [
+      "Small homogeneous packet lengths consistent with host-level transport traffic."
+    ],
+    "packet_sizes": [
+      170,
+      173,
+      170,
+      160,
+      169,
+      177,
+      162,
+      186,
+      164,
+      166,
+      159,
+      164,
+      182,
+      147,
+      166,
+      170,
+      168,
+      177,
+      194,
+      176,
+      199,
+      182,
+      188,
+      155,
+      166,
+      197,
+      169,
+      162,
+      197,
+      166,
+      164,
+      150,
+      175,
+      187,
+      199,
+      160,
+      162,
+      163,
+      159,
+      187,
+      184,
+      180,
+      145,
+      168,
+      144,
+      182,
+      178,
+      201,
+      171,
+      172
+    ],
+    "packet_count_evaluated": 50
+  },
+  "flow_features": {
+    "pkt_count": 50,
+    "byte_count": 8612,
+    "duration": 0.986,
+    "len_mean": 172.24,
+    "len_std": 14.05,
+    "len_min": 144.0,
+    "len_max": 201.0,
+    "len_median": 170.0,
+    "iat_mean": 0.02012,
+    "iat_std": 0.00279,
+    "jitter": 0.00297,
+    "pkt_rate": 50.71,
+    "byte_rate": 8733.91,
+    "ratio_small": 0.98,
+    "ratio_medium": 0.02,
+    "ratio_large": 0.0,
+    "fwd_bwd_pkt_ratio": 1.174,
+    "avg_burst_size": 50.0
+  },
+  "ai_classification": {
+    "predicted_class": "VoIP",
+    "confidence_score": 0.925,
+    "probabilities": {
+      "VoIP": 0.925,
+      "WhatsApp": 0.0583,
+      "Web": 0.0,
+      "Email": 0.0,
+      "Video": 0.0167,
+      "ICMP": 0.0
+    },
+    "top_features": [
+      {
+        "feature": "len_q90",
+        "value": 194.3,
+        "importance_weight": 0.078
+      },
+      {
+        "feature": "len_q75",
+        "value": 182.0,
+        "importance_weight": 0.075
+      },
+      {
+        "feature": "len_std",
+        "value": 14.05,
+        "importance_weight": 0.073
+      },
+      {
+        "feature": "len_max",
+        "value": 201.0,
+        "importance_weight": 0.072
+      },
+      {
+        "feature": "iat_min",
+        "value": 0.01,
+        "importance_weight": 0.062
+      }
+    ],
+    "model_version": "RandomForestClassifier (Accuracy: 100.0%)"
+  },
+  "security_assessment": {
+    "overall_score": 100,
+    "risk_level": "SECURE",
+    "compliance_status": {
+      "NIST_SP_800_77_Rev1": true,
+      "RFC_8221_ESP": true,
+      "RFC_8247_IKEv2": true,
+      "CNSA_Suite": false
+    },
+    "threat_matrix": [],
+    "category_scores": {
+      "cryptographic_strength": 100,
+      "key_exchange_dh": 100,
+      "forward_secrecy_pfs": 100,
+      "replay_protection": 100,
+      "protocol_hardening": 100
+    },
+    "summary_recommendations": [
+      "IPsec configuration adheres to modern military and enterprise cryptographic standards."
+    ],
+    "total_vulnerabilities": 0,
+    "critical_count": 0,
+    "high_count": 0,
+    "medium_count": 0,
+    "low_count": 0
+  },
+  "packets_preview": [
+    {
+      "index": 1,
+      "timestamp": 1790336295.723846,
+      "src_ip": "192.168.10.1",
+      "dst_ip": "192.168.20.1",
+      "ip_version": 4,
+      "protocol": "IKE/ISAKMP",
+      "length": 406,
+      "summary": "IKE/ISAKMP 192.168.10.1 -> 192.168.20.1 (Len: 406)",
+      "layers": [
+        "IPv4",
+        "UDP",
+        "IKE"
+      ],
+      "details": {
+        "sport": 500,
+        "dport": 500,
+        "ike_raw": 
